@@ -2108,20 +2108,20 @@
       <div class="hero-c">
         <img src="mayitas_logo.jpg" alt="Logo Mayitas" class="main-logo-hero">
         <div class="hero-platos">
-          <article class="plato-item">
+           <article class="plato-item" onclick="scrollToMenu()">
             <div class="plato-circle" id="pc101">
               <img id="pi101" src="salchipapa.jpg" alt="Salchipapa">
             </div>
             <div class="plato-name">Salchipapa<em>s</em></div>
           </article>
-          <article class="plato-item">
+           <article class="plato-item" onclick="scrollToMenu()">
             <div class="plato-circle plato-big" id="pc102">
               <img id="pi102" src="hamburguesa.jpg" alt="Hamburguesa">
               <div class="plato-ph" style="font-size:2.8rem">🍔</div>
             </div>
             <div class="plato-name">Hamburguesa<em>s</em></div>
           </article>
-          <article class="plato-item">
+           <article class="plato-item" onclick="scrollToMenu()">
             <div class="plato-circle" id="pc103">
               <img id="pi103" src="broaster.jpg" alt="Broaster">
               <div class="plato-ph">🍗</div>
@@ -2227,9 +2227,18 @@
         <button type="button" class="cat-tab active" onclick="filtrar('todos',this)">🍽️ Todo</button>
         <button type="button" class="cat-tab" onclick="filtrar('salchipapa',this)">🍟 Salchipapas</button>
         <button type="button" class="cat-tab" onclick="filtrar('hamburguesa',this)">🍔 Hamburguesas</button>
+        <button type="button" class="cat-tab" onclick="filtrar('hamburguesas_artesanales',this)">👨‍🍳 Hamburguesas Artesanales</button>
+        <button type="button" class="cat-tab" onclick="filtrar('hamburguesas_economicas',this)">🍔 Hamburguesas Económicas</button>
         <button type="button" class="cat-tab" onclick="filtrar('broaster',this)">🍗 Broaster</button>
-        <button type="button" class="cat-tab" onclick="filtrar('bebida',this)">🥤 Bebidas</button>
-        <button type="button" class="cat-tab" onclick="filtrar('combo',this)">⚡ Combos</button>
+        <button type="button" class="cat-tab" onclick="filtrar('sandwiches',this)">🥪 Sándwiches</button>
+        <button type="button" class="cat-tab" onclick="filtrar('clasicos_mayitas',this)">✨ Clásicos Mayitas</button>
+        <button type="button" class="cat-tab" onclick="filtrar('especiales_plato',this)">🍽️ Especiales al plato</button>
+        <button type="button" class="cat-tab" onclick="filtrar('ensaladas_mayitas',this)">🥗 Ensaladas Mayitas</button>
+        <button type="button" class="cat-tab" onclick="filtrar('jugos',this)">🥤 Jugos</button>
+        <button type="button" class="cat-tab" onclick="filtrar('batidos',this)">🥛 Batidos</button>
+        <button type="button" class="cat-tab" onclick="filtrar('bebidas_calientes',this)">☕ Bebidas Calientes</button>
+        <button type="button" class="cat-tab" onclick="filtrar('bebidas_frias',this)">🧊 Bebidas Frías</button>
+        <button type="button" class="cat-tab" onclick="filtrar('combo',this)">🎁 Combos</button>
       </div>
       <div class="prod-grid" id="pg"></div>
     </section>
@@ -2578,7 +2587,13 @@
     // RENDER
     function render() {
       const lista = catA === 'todos' ? productos : productos.filter(x => x.cat === catA);
-      const EMOJI_CAT = { salchipapa: '🍟', hamburguesa: '🍔', broaster: '🍗', bebida: '🥤', combo: '🎁' };
+      const EMOJI_CAT = { 
+        salchipapa: '🍟', hamburguesa: '🍔', broaster: '🍗', combo: '🎁',
+        sandwiches: '🥪', clasicos_mayitas: '✨', jugos: '🥤', batidos: '🥛',
+        bebidas_calientes: '☕', bebidas_frias: '🧊', ensaladas_mayitas: '🥗',
+        especiales_plato: '🍽️', hamburguesas_artesanales: '👨‍🍳', 
+        hamburguesas_economicas: '🍔'
+      };
       document.getElementById('pg').innerHTML = lista.map(p => `
     <div class="prod-card" data-id="${p.id}">
       <div class="prod-img">
@@ -2700,6 +2715,10 @@
       const el = document.getElementById('notif');
       el.textContent = msg; el.classList.add('show');
       setTimeout(() => el.classList.remove('show'), 2400);
+    }
+
+    function scrollToMenu() {
+      document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
     }
 
     // STATS ANIMADOS

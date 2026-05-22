@@ -1042,115 +1042,115 @@
     }
 
 
-/* PROMOS */
-.promos-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
+    /* PROMOS */
+    .promos-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
 
-.promo-slot {
-  background: var(--gris2);
-  border-radius: 12px;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, .05);
-}
+    .promo-slot {
+      background: var(--gris2);
+      border-radius: 12px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, .05);
+    }
 
-.promo-slot-img {
-  position: relative;
-  width: 100%;
+    .promo-slot-img {
+      position: relative;
+      width: 100%;
       height: 500px;
-  max-height: 750px;
-  background: var(--gris);
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  margin-bottom: .8rem;
+      max-height: 750px;
+      background: var(--gris);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      margin-bottom: .8rem;
       display: flex;
       align-items: center;
       justify-content: center;
-}
+    }
 
-.promo-slot-img img {
+    .promo-slot-img img {
       max-width: 100%;
       max-height: 100%;
       width: auto;
       height: auto;
-  object-fit: contain;
-  display: block;
-}
+      object-fit: contain;
+      display: block;
+    }
 
-.promo-slot-img.empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, .25);
-  font-family: var(--fh);
-  font-size: .75rem;
-  letter-spacing: 1px;
-}
+    .promo-slot-img.empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, .25);
+      font-family: var(--fh);
+      font-size: .75rem;
+      letter-spacing: 1px;
+    }
 
-/* El resto del CSS lo dejamos igual */
-.promo-slot label {
-  display: block;
-  font-family: var(--fh);
-  font-size: .68rem;
-  color: rgba(255, 255, 255, .4);
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
+    /* El resto del CSS lo dejamos igual */
+    .promo-slot label {
+      display: block;
+      font-family: var(--fh);
+      font-size: .68rem;
+      color: rgba(255, 255, 255, .4);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
 
-.promo-slot input {
-  width: 100%;
-  background: var(--gris);
-  border: 1px solid rgba(255, 255, 255, .08);
-  color: #fff;
-  padding: 9px 11px;
-  border-radius: 7px;
-  font-family: var(--fb);
-  font-size: .82rem;
-  outline: none;
-  margin-bottom: 8px;
-}
+    .promo-slot input {
+      width: 100%;
+      background: var(--gris);
+      border: 1px solid rgba(255, 255, 255, .08);
+      color: #fff;
+      padding: 9px 11px;
+      border-radius: 7px;
+      font-family: var(--fb);
+      font-size: .82rem;
+      outline: none;
+      margin-bottom: 8px;
+    }
 
-.promo-slot input:focus {
-  border-color: var(--rojo);
-}
+    .promo-slot input:focus {
+      border-color: var(--rojo);
+    }
 
-.promo-slot-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
+    .promo-slot-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
 
-.promo-slot-row .sw {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .72rem;
-  color: rgba(255, 255, 255, .5);
-  font-family: var(--fh);
-  letter-spacing: 1px;
-}
+    .promo-slot-row .sw {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .5);
+      font-family: var(--fh);
+      letter-spacing: 1px;
+    }
 
-.btn-mini {
-  background: var(--rojo);
-  color: #fff;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-family: var(--fh);
-  font-size: .7rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background .2s;
-}
+    .btn-mini {
+      background: var(--rojo);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: var(--fh);
+      font-size: .7rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background .2s;
+    }
 
-.btn-mini:hover {
-  background: #e01c1e;
-}
+    .btn-mini:hover {
+      background: #e01c1e;
+    }
 
     /* ANUNCIOS */
     .anun-list {
@@ -1389,7 +1389,8 @@
               <label>CATEGORÍA</label>
               <select id="fc-cat">
                 <option value="ingrediente">🥩 Ingrediente</option>
-                <option value="bebida">🥤 Bebida</option>
+                <option value="bebidas_calientes">☕ Bebida Caliente</option>
+                <option value="bebidas_frias">🧊 Bebida Fría</option>
                 <option value="empaque">📦 Empaque</option>
                 <option value="condimento">🧂 Condimento</option>
                 <option value="limpieza">🧹 Limpieza</option>
@@ -1457,7 +1458,8 @@
           <select class="sel" id="filtroCat" onchange="renderHistorial()">
             <option value="">Todas las categorías</option>
             <option value="ingrediente">🥩 Ingrediente</option>
-            <option value="bebida">🥤 Bebida</option>
+            <option value="bebidas_calientes">☕ Bebida Caliente</option>
+            <option value="bebidas_frias">🧊 Bebida Fría</option>
             <option value="empaque">📦 Empaque</option>
             <option value="condimento">🧂 Condimento</option>
             <option value="limpieza">🧹 Limpieza</option>
@@ -1538,10 +1540,19 @@
           <select class="sel" id="prodFiltroCat" onchange="renderProductos()">
             <option value="">Todas las categorías</option>
             <option value="salchipapa">🍟 Salchipapa</option>
-            <option value="hamburguesa">🍔 Hamburguesa</option>
+            <option value="hamburguesa">🍔 Hamburguesa Clásica</option>
+            <option value="hamburguesas_artesanales">👨‍🍳 Hamburguesa Artesanal</option>
+            <option value="hamburguesas_economicas">🍔 Hamburguesa Económica</option>
             <option value="broaster">🍗 Broaster</option>
-            <option value="bebida">🥤 Bebida</option>
-            <option value="combo">🎁 Combo</option>
+            <option value="sandwiches">🥪 Sándwich</option>
+            <option value="clasicos_mayitas">✨ Clásico Mayitas</option>
+            <option value="especiales_plato">🍽️ Especial al plato</option>
+            <option value="ensaladas_mayitas">🥗 Ensalada Mayitas</option>
+            <option value="jugos">🥤 Jugo</option>
+            <option value="batidos">🥛 Batido</option>
+            <option value="bebidas_calientes">☕ Bebida Caliente</option>
+            <option value="bebidas_frias">🧊 Bebida Fría</option>
+            <option value="combo">🎁 Combo / Regalo</option>
           </select>
         </div>
         <div class="prod-grid" id="prodGrid"></div>
@@ -1592,7 +1603,8 @@
         <div class="fg"><label>CATEGORÍA</label>
           <select id="e-cat">
             <option value="ingrediente">🥩 Ingrediente</option>
-            <option value="bebida">🥤 Bebida</option>
+            <option value="bebidas_calientes">☕ Bebida Caliente</option>
+            <option value="bebidas_frias">🧊 Bebida Fría</option>
             <option value="empaque">📦 Empaque</option>
             <option value="condimento">🧂 Condimento</option>
             <option value="limpieza">🧹 Limpieza</option>
@@ -1660,10 +1672,19 @@
         <div class="fg"><label>CATEGORÍA *</label>
           <select id="p-cat">
             <option value="salchipapa">🍟 Salchipapa</option>
-            <option value="hamburguesa">🍔 Hamburguesa</option>
+            <option value="hamburguesa">🍔 Hamburguesa Clásica</option>
+            <option value="hamburguesas_artesanales">👨‍🍳 Hamburguesa Artesanal</option>
+            <option value="hamburguesas_economicas">🍔 Hamburguesa Económica</option>
             <option value="broaster">🍗 Broaster</option>
-            <option value="bebida">🥤 Bebida</option>
-            <option value="combo">🎁 Combo</option>
+            <option value="sandwiches">🥪 Sándwich</option>
+            <option value="clasicos_mayitas">✨ Clásico Mayitas</option>
+            <option value="especiales_plato">🍽️ Especial al plato</option>
+            <option value="ensaladas_mayitas">🥗 Ensalada Mayitas</option>
+            <option value="jugos">🥤 Jugo</option>
+            <option value="batidos">🥛 Batido</option>
+            <option value="bebidas_calientes">☕ Bebida Caliente</option>
+            <option value="bebidas_frias">🧊 Bebida Fría</option>
+            <option value="combo">🎁 Combo / Regalo</option>
           </select>
         </div>
         <div class="fg"><label>OPCIONES</label>
@@ -1740,7 +1761,14 @@
       'mayitas': { pass: 'admin2025', rol: 'admin', nombre: 'Administrador' },
       'personal': { pass: 'mayitas123', rol: 'personal', nombre: 'Personal' },
     };
-    const CAT_ICONS = { ingrediente: '🥩', bebida: '🥤', empaque: '📦', condimento: '🧂', limpieza: '🧹', otro: '📌' };
+    const CAT_ICONS = {
+      ingrediente: '🥩', empaque: '📦', condimento: '🧂', limpieza: '🧹', otro: '📌',
+      salchipapa: '🍟', hamburguesa: '🍔', broaster: '🍗', combo: '🎁',
+      sandwiches: '🥪', clasicos_mayitas: '✨', jugos: '🥤', batidos: '🥛',
+      bebidas_calientes: '☕', bebidas_frias: '🧊', ensaladas_mayitas: '🥗',
+      especiales_plato: '🍽️', hamburguesas_artesanales: '👨‍🍳',
+      hamburguesas_economicas: '🍔'
+    };
 
     // ── HELPERS ──
     function hoy() { return new Date().toISOString().split('T')[0]; }
