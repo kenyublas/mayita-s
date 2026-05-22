@@ -207,12 +207,13 @@
       align-items: center;
       justify-content: space-between;
       height: 60px;
+      position:relative;
     }
 
     .nav-logo {
       font-family: serif;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
       background: linear-gradient(to bottom, var(--amarillo), var(--naranja), var(--rojo));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -224,13 +225,24 @@
     .nav-logo em {
       color: inherit;
       font-style: normal;
+      flex:1;
     }
 
     .nav-links {
-      display: flex;
+      display: none;
       gap: 1.2rem;
+
+    }
+@media (min-width: 992px) {
+      .nav-links {
+        display: flex; /* Se vuelven a activar solo en pantallas grandes */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
 
+  
     .nav-links a {
       color: rgba(255, 255, 255, 0.65);
       text-decoration: none;
@@ -248,6 +260,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex: 1; justify-content: flex-end;
     }
 
     .btn-c-nav {
@@ -1635,6 +1648,9 @@
       .nav-links {
         display: flex;
         gap: 0.5rem;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
       }
 
       .nav-links a {
@@ -2197,6 +2213,7 @@
         font-size: .9rem;
       }
     }
+    
   </style>
 </head>
 
@@ -2210,7 +2227,7 @@
       <div class="nav-logo">MAYITA<em>'S</em></div>
       <div class="nav-links">
         <a href="#inicio">Inicio</a>
-        <a href="#menu">Menú</a>
+        <a href="#menu">Carta</a>
         <a href="#promos">Promos</a>
         <a href="#horarios">Horarios</a>
         <a href="#locales">Locales</a>
@@ -2226,7 +2243,7 @@
     </nav>
     <div class="mmenu" id="mm">
       <a href="#inicio" onclick="toggleMenu()">🏠 Inicio</a>
-      <a href="#menu" onclick="toggleMenu()">🍽️ Menú</a>
+      <a href="#menu" onclick="toggleMenu()">🍽️ Carta</a>
       <a href="#promos" onclick="toggleMenu()">🔥 Promociones</a>
       <a href="#horarios" onclick="toggleMenu()">🕐 Horarios</a>
       <a href="#locales" onclick="toggleMenu()">📍 Locales</a>
@@ -2362,7 +2379,7 @@
     </section>
 
     <section class="sec" id="menu" aria-label="Menú">
-      <div class="stitle">NUESTRO MENÚ</div>
+      <div class="stitle">CARTA EN TODO</div>
       <div class="sline"></div>
       <div class="cat-tabs cat-tabs-sticky">
         <button type="button" class="cat-tab active" onclick="filtrar('todos',this)">🍽️ Todo</button>
