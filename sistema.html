@@ -13,7 +13,7 @@
       --rojo: #C8181A;
       --amarillo: #FFD700;
       --verde: #22c55e;
-      --naranja: #f97316;
+      --naranja: #FF8C00;
       --negro: #0A0A0A;
       --negro2: #141414;
       --gris: #1E1E1E;
@@ -74,13 +74,16 @@
     .login-logo {
       font-family: var(--fd);
       font-size: 2.5rem;
-      color: var(--amarillo);
       letter-spacing: 3px;
       margin-bottom: 3px;
+      background: linear-gradient(to bottom, var(--amarillo), var(--naranja), var(--rojo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .login-logo em {
-      color: var(--rojo);
+      color: inherit;
       font-style: normal;
     }
 
@@ -177,12 +180,15 @@
     .h-logo {
       font-family: var(--fd);
       font-size: 1.6rem;
-      color: var(--amarillo);
       letter-spacing: 2px;
+      background: linear-gradient(to bottom, var(--amarillo), var(--naranja), var(--rojo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .h-logo em {
-      color: var(--rojo);
+      color: inherit;
       font-style: normal;
     }
 
@@ -190,6 +196,7 @@
       font-family: var(--fh);
       font-size: .7rem;
       color: rgba(255, 255, 255, .3);
+      -webkit-text-fill-color: rgba(255, 255, 255, .3);
       letter-spacing: 2px;
       margin-left: 10px;
       vertical-align: middle;
