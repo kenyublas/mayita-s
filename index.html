@@ -2893,26 +2893,26 @@
 
       const tot = carrito.reduce((s, x) => s + (x.p * x.qty), 0);
       
-      let msg = "🍔 *NUEVO PEDIDO — MAYITA'S*\n";
+      let msg = " NUEVO PEDIDO — MAYITA'S\n";
       msg += "━━━━━━━━━━━━━━━━━━\n\n";
 
       carrito.forEach(it => {
-        msg += `✅ *${it.qty}x* ${it.n}${it.p > 0 ? ' (S/ ' + (it.p * it.qty).toFixed(2) + ')' : ''}\n`;
+        msg += ` ${it.qty}x ${it.n}${it.p > 0 ? ' (S/ ' + (it.p * it.qty).toFixed(2) + ')' : ''}\n`;
       });
 
-      msg += `\n💰 *TOTAL A PAGAR: S/ ${tot.toFixed(2)}*\n`;
+      msg += `\n *TOTAL A PAGAR: S/ ${tot.toFixed(2)}*\n`;
       msg += "━━━━━━━━━━━━━━━━━━\n\n";
 
-      msg += `👤 *Cliente:* ${nombre}\n`;
-      msg += `📞 *Teléfono:* ${telefono}\n`;
-      msg += `📍 *Entrega:* ${tipoEntrega === 'delivery' ? 'Delivery 🛵' : 'Recojo en local 🥡'}\n`;
+      msg += ` *Cliente:*${nombre}\n`;
+      msg += ` *Teléfono: ${telefono}\n`;
+      msg += ` *Entrega: ${tipoEntrega === 'delivery' ? 'Delivery 🛵' : 'Recojo en local 🥡'}\n`;
 
       if (tipoEntrega === 'delivery') {
-        msg += `🏠 *Dirección:* ${direccion}\n`;
-        if (referencia) msg += `🗺️ *Referencia:* ${referencia}\n`;
+        msg += ` *Dirección: ${direccion}\n`;
+        if (referencia) msg += ` *Referencia:* ${referencia}\n`;
       }
 
-      msg += `💳 *Pago:* ${metodoPago}\n\n`;
+      msg += ` *Pago: ${metodoPago}\n\n`;
       msg += "Enviado desde mayita-s.vercel.app";
 
       window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
