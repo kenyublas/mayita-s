@@ -1718,9 +1718,10 @@
         padding: 8px 14px;
         font-size: .76rem;
       }
+    }
 
-      /* Solo para celulares y tablets (pantallas menores a 768px) */
-      @media (max-width: 768px) {
+    /* Solo para celulares y tablets (pantallas menores a 768px) */
+    @media (max-width: 768px) {
 
         .main-logo-hero,
         .hero-platos img {
@@ -2667,7 +2668,7 @@
       <div class="modal-title">LOGIN</div>
       <div class="modal-sub">Sistema de inventario · Mayita's</div>
       <div class="mf">
-        <label>USUARIO</label><input type="text" id="lu" placeholder="usuario" autocomplete="username">
+        <label>CORREO</label><input type="email" id="lu" placeholder="correo@ejemplo.com" autocomplete="username">
         <label>CONTRASEÑA</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"
           onkeydown="if(event.key==='Enter')doLogin()">
       </div>
@@ -2680,10 +2681,12 @@
   <div class="notif" id="notif"></div>
 
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     // ── SUPABASE CONFIG ──
     const SB_URL = 'https://vazsotruzgxfftavonzv.supabase.co';
     const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhenNvdHJ1emd4ZmZ0YXZvbnp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5ODI1OTksImV4cCI6MjA5NDU1ODU5OX0.pRMuiYQStv7mn_39scbJnq0HH_u15qPuvGguNnZ7Y0M';
+    const supa = window.supabase.createClient(SB_URL, SB_KEY);
 
     async function sbGet(path) {
       const res = await fetch(`${SB_URL}/rest/v1/${path}`, {
@@ -2863,18 +2866,18 @@
       iframe.src = url;
     }
 
-    // LOGIN
+    // LOGIN (Supabase Auth)
     function abrirLogin() { document.getElementById('mlogin').classList.add('open'); }
     function cerrarLogin() { document.getElementById('mlogin').classList.remove('open'); document.getElementById('lerr').textContent = ''; }
-    function doLogin() {
-      const u = document.getElementById('lu').value.trim().toLowerCase();
+    async function doLogin() {
+      const email = document.getElementById('lu').value.trim();
       const p = document.getElementById('lp').value;
-      const creds = { 'mayitas': 'admin2025', 'personal': 'mayitas123' };
-
-      if (creds[u] && creds[u] === p) {
-        try { localStorage.setItem('mayitas_auth_user', u); } catch (e) { }
-        window.location.href = 'sistema.html';
-      } else { document.getElementById('lerr').textContent = 'Usuario o contraseña incorrectos.'; }
+      const errEl = document.getElementById('lerr');
+      if (!email || !p) { errEl.textContent = 'Ingresa correo y contraseña.'; return; }
+      errEl.textContent = 'Ingresando...';
+      const { error } = await supa.auth.signInWithPassword({ email, password: p });
+      if (error) { errEl.textContent = 'Correo o contraseña incorrectos.'; return; }
+      window.location.href = 'sistema.html';
     }
 
     // HAMBURGUESA MÓVIL

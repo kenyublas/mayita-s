@@ -1334,14 +1334,13 @@
       <div class="login-logo">MAYITA<em>'S</em></div>
       <div class="login-sub">SISTEMA DE INVENTARIO</div>
       <div class="lf">
-        <label>USUARIO</label>
-        <input type="text" id="lu" placeholder="usuario" autocomplete="username">
+        <label>CORREO</label>
+        <input type="email" id="lu" placeholder="correo@ejemplo.com" autocomplete="username">
         <label>CONTRASEÑA</label>
         <input type="password" id="lp" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
       </div>
       <div class="lerr" id="lerr"></div>
       <button class="btn-ing" onclick="doLogin()">INGRESAR</button>
-      <div class="login-hint">Admin: mayitas / Personal: personal</div>
     </div>
   </div>
 
@@ -1729,6 +1728,7 @@
 
   <div class="notif" id="notif"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     // ── SUPABASE CONFIG ──
     const SB_URL = 'https://vazsotruzgxfftavonzv.supabase.co';
@@ -1736,13 +1736,22 @@
     const TABLE = 'compras';
     const BUCKET = 'mayitas';
     const STORAGE_URL = `${SB_URL}/storage/v1/object/public/${BUCKET}/`;
+    const supa = window.supabase.createClient(SB_URL, SB_KEY);
+
+    // Devuelve el token del usuario logueado. Si no hay sesión, cierra y aborta.
+    async function authToken() {
+      const { data: { session } } = await supa.auth.getSession();
+      if (!session) { salir(); throw new Error('Sesión expirada'); }
+      return session.access_token;
+    }
 
     async function sbFetch(method, path, body) {
+      const token = await authToken();
       const res = await fetch(`${SB_URL}/rest/v1/${path}`, {
         method,
         headers: {
           'apikey': SB_KEY,
-          'Authorization': `Bearer ${SB_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'Prefer': method === 'POST' ? 'return=representation' : 'return=minimal',
         },
@@ -1762,10 +1771,6 @@
     let anuncios = [];
     let prodImgPendiente = null; // archivo pendiente de subir al guardar producto
 
-    const USERS = {
-      'mayitas': { pass: 'admin2025', rol: 'admin', nombre: 'Administrador' },
-      'personal': { pass: 'mayitas123', rol: 'personal', nombre: 'Personal' },
-    };
     const CAT_ICONS = {
       ingrediente: '🥩', empaque: '📦', condimento: '🧂', limpieza: '🧹', otro: '📌',
       salchipapa: '🍟', hamburguesa: '🍔', broaster: '🍗', combo: '🎁',
@@ -1789,27 +1794,36 @@
         ? '<div class="tabla-empty"><p style="animation:pulse2 1s infinite">⏳ CARGANDO...</p></div>' : '';
     }
 
-    // ── LOGIN ──
-    function doLogin() {
-      const u = document.getElementById('lu').value.trim().toLowerCase();
-      const p = document.getElementById('lp').value;
-      if (USERS[u] && USERS[u].pass === p) {
-        localStorage.setItem('mayitas_auth_user', u);
-        usuario = { nombre: USERS[u].nombre, rol: USERS[u].rol, user: u };
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('app').classList.add('visible');
-        document.getElementById('hUser').textContent = usuario.nombre;
-        const r = document.getElementById('hRole');
-        r.textContent = usuario.rol === 'admin' ? 'ADMIN' : 'PERSONAL';
-        r.className = 'h-role ' + (usuario.rol === 'admin' ? 'role-admin' : 'role-personal');
-        initApp();
-      } else {
-        document.getElementById('lerr').textContent = 'Usuario o contraseña incorrectos.';
-      }
+    // ── LOGIN (Supabase Auth) ──
+    async function doLogin() {
+      const email = document.getElementById('lu').value.trim();
+      const pass = document.getElementById('lp').value;
+      const errEl = document.getElementById('lerr');
+      if (!email || !pass) { errEl.textContent = 'Ingresa correo y contraseña.'; return; }
+      errEl.textContent = 'Ingresando...';
+      const { error } = await supa.auth.signInWithPassword({ email, password: pass });
+      if (error) { errEl.textContent = 'Correo o contraseña incorrectos.'; return; }
+      await iniciarSesion();
     }
 
-    function salir() {
-      localStorage.removeItem('mayitas_auth_user');
+    // Carga el rol/nombre desde la base (NO desde el HTML) y abre la app
+    async function iniciarSesion() {
+      const { data: { session } } = await supa.auth.getSession();
+      if (!session) return;
+      const { data: prof, error } = await supa.from('profiles').select('rol,nombre').single();
+      if (error || !prof) { document.getElementById('lerr').textContent = 'No se pudo cargar el perfil. Contacta al admin.'; return; }
+      usuario = { nombre: prof.nombre, rol: prof.rol, user: session.user.email };
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('app').classList.add('visible');
+      document.getElementById('hUser').textContent = usuario.nombre;
+      const r = document.getElementById('hRole');
+      r.textContent = usuario.rol === 'admin' ? 'ADMIN' : 'PERSONAL';
+      r.className = 'h-role ' + (usuario.rol === 'admin' ? 'role-admin' : 'role-personal');
+      initApp();
+    }
+
+    async function salir() {
+      await supa.auth.signOut();
       window.location.href = 'index.html';
     }
 
@@ -2318,13 +2332,14 @@
 
     // ── SUBIDA AL STORAGE ──
     async function subirImagen(blob, prodId) {
+      const token = await authToken();
       const ts = Date.now();
       const filename = `productos/${prodId}_${ts}.webp`;
       const res = await fetch(`${SB_URL}/storage/v1/object/${BUCKET}/${filename}`, {
         method: 'POST',
         headers: {
           'apikey': SB_KEY,
-          'Authorization': `Bearer ${SB_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'image/webp',
           'x-upsert': 'true',
         },
@@ -2340,10 +2355,11 @@
     // ── BORRAR IMAGEN DEL STORAGE ──
     async function borrarImagenStorage(url) {
       if (!url || !url.startsWith(STORAGE_URL)) return;
+      const token = await authToken();
       const path = url.replace(STORAGE_URL, '');
       await fetch(`${SB_URL}/storage/v1/object/${BUCKET}/${path}`, {
         method: 'DELETE',
-        headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+        headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${token}` }
       });
     }
 
@@ -2488,9 +2504,10 @@
           const blob = await comprimirImagen(f, 'promo');
           const ts = Date.now();
           const filename = `promos/promo_${id}_${ts}.webp`;
+          const token = await authToken();
           const res = await fetch(`${SB_URL}/storage/v1/object/${BUCKET}/${filename}`, {
             method: 'POST',
-            headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'image/webp', 'x-upsert': 'true' },
+            headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${token}`, 'Content-Type': 'image/webp', 'x-upsert': 'true' },
             body: blob
           });
           if (!res.ok) throw new Error(await res.text());
@@ -2615,15 +2632,11 @@
       }
     }
 
-    // ── AUTO-LOGIN (Verificar sesión al cargar) ──
-    window.addEventListener('DOMContentLoaded', () => {
-      const session = localStorage.getItem('mayitas_auth_user');
-      if (session && USERS[session]) {
-        // Rellenamos los campos automáticamente y ejecutamos el login
-        document.getElementById('lu').value = session;
-        document.getElementById('lp').value = USERS[session].pass;
-        doLogin();
-      }
+    // ── Verificar sesión real al cargar ──
+    window.addEventListener('DOMContentLoaded', async () => {
+      const { data: { session } } = await supa.auth.getSession();
+      if (session) await iniciarSesion();
+      // si no hay sesión, se queda en la pantalla de login
     });
   </script>
 </body>
