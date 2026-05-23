@@ -2027,12 +2027,34 @@
         padding: 1.6rem 1.4rem;
         position: relative;
         transition: all .3s;
+        display: block;
+        text-decoration: none;
       }
 
       .test-card:hover {
         border-color: rgba(255, 215, 0, .3);
         transform: translateY(-3px);
       }
+
+      /* Colores Realistas por Red Social */
+      .test-card.fb { 
+        background: #1877f2; color: #fff; border: none; 
+      }
+      .test-card.fb .test-texto, .test-card.fb .test-nombre, .test-card.fb .test-stars { color: #fff; }
+      .test-card.fb .test-fuente { color: rgba(255,255,255,0.8); }
+
+      .test-card.tt { 
+        background: #000; border: 1px solid #333; 
+      }
+      .test-card.tt .test-fuente { color: #ff0050; }
+      .test-card.tt .test-stars { color: #00f2ea; }
+
+      .test-card.ig { 
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+        color: #fff; border: none;
+      }
+      .test-card.ig .test-texto, .test-card.ig .test-nombre, .test-card.ig .test-stars { color: #fff; }
+      .test-card.ig .test-fuente { color: rgba(255,255,255,0.9); }
 
       .test-card::before {
         content: '"';
@@ -2441,42 +2463,42 @@
         style="text-align:center;color:rgba(255,255,255,.45);font-family:var(--fh);letter-spacing:1.5px;font-size:.78rem;margin-bottom:2rem;">
         ⭐ MÁS DE 500 CLIENTES SATISFECHOS ⭐</div>
       <div class="test-grid">
-        <article class="test-card">
+        <a href="https://www.facebook.com/mayitasburger/" target="_blank" rel="noopener" class="test-card fb">
           <div class="test-stars">★ ★ ★ ★ ★</div>
           <div class="test-texto">La salchipapa Mayitas es la mejor de Huánuco, en serio. Las salsas caseras hacen toda
             la diferencia y siempre llega caliente.</div>
           <div class="test-autor">
-            <div class="test-avatar">CR</div>
+            <div class="test-avatar" style="background: #fff; color: #1877f2;">f</div>
             <div>
               <div class="test-nombre">Carlos R.</div>
-              <div class="test-fuente">Cliente desde 2023</div>
+              <div class="test-fuente">Facebook • Recomendación</div>
             </div>
           </div>
-        </article>
-        <article class="test-card">
+        </a>
+        <a href="https://www.tiktok.com/@mayitas_huanuco" target="_blank" rel="noopener" class="test-card tt">
           <div class="test-stars">★ ★ ★ ★ ★</div>
           <div class="test-texto">El broaster es crocante por fuera y jugoso por dentro. Pedimos casi todos los viernes
             en familia. ¡Recomendadísimo!</div>
           <div class="test-autor">
-            <div class="test-avatar">ML</div>
+            <div class="test-avatar" style="background: #fff; color: #000;">♪</div>
             <div>
               <div class="test-nombre">María L.</div>
-              <div class="test-fuente">Local Amarilis</div>
+              <div class="test-fuente">TikTok • Viral</div>
             </div>
           </div>
-        </article>
-        <article class="test-card">
+        </a>
+        <a href="https://www.instagram.com/mayitasburger/" target="_blank" rel="noopener" class="test-card ig">
           <div class="test-stars">★ ★ ★ ★ ★</div>
           <div class="test-texto">Atención rápida por WhatsApp, llegó en 25 min y las alitas acevichadas estaban
             increíbles. Repetiré sin duda.</div>
           <div class="test-autor">
-            <div class="test-avatar">JP</div>
+            <div class="test-avatar" style="background: #fff; color: #bc1888;">ig</div>
             <div>
               <div class="test-nombre">Jorge P.</div>
-              <div class="test-fuente">Delivery Huánuco</div>
+              <div class="test-fuente">Instagram • @mayitasburger</div>
             </div>
           </div>
-        </article>
+        </a>
       </div>
     </section>
 
