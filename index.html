@@ -2262,20 +2262,20 @@
       <div class="hero-c">
         <img src="mayitas_logo.jpg" alt="Logo Mayitas" class="main-logo-hero">
         <div class="hero-platos">
-          <article class="plato-item" onclick="scrollToMenu()">
+        <article class="plato-item" onclick="scrollToMenu('salchipapa')">
             <div class="plato-circle" id="pc101">
               <img id="pi101" src="salchipapa.jpg" alt="Salchipapa">
             </div>
             <div class="plato-name">Salchipapa<em>s</em></div>
           </article>
-          <article class="plato-item" onclick="scrollToMenu()">
+        <article class="plato-item" onclick="scrollToMenu('hamburguesas_artesanales')">
             <div class="plato-circle plato-big" id="pc102">
               <img id="pi102" src="hamburguesa.jpg" alt="Hamburguesa">
               <div class="plato-ph" style="font-size:2.8rem">🍔</div>
             </div>
             <div class="plato-name">Hamburguesa<em>s</em></div>
           </article>
-          <article class="plato-item" onclick="scrollToMenu()">
+        <article class="plato-item" onclick="scrollToMenu('broaster')">
             <div class="plato-circle" id="pc103">
               <img id="pi103" src="broaster.jpg" alt="Broaster">
               <div class="plato-ph">🍗</div>
@@ -2378,7 +2378,7 @@
     </section>
 
     <section class="sec" id="menu" aria-label="Menú">
-      <div class="stitle">CARTA EN TODO</div>
+      <div class="stitle">CARTA</div>
       <div class="sline"></div>
       <div class="cat-tabs cat-tabs-sticky">
         <button type="button" class="cat-tab active" onclick="filtrar('todos',this)">🍽️ Todo</button>
@@ -2626,8 +2626,32 @@
       </div>
     </div>
     <div class="c-foot">
-      <label class="cf-lbl">TU NOMBRE (OPCIONAL)</label>
+      <label class="cf-lbl">TU NOMBRE *</label>
       <input type="text" class="cf-input" id="cnombre" placeholder="Ej: Juan Pérez">
+
+      <label class="cf-lbl">TELÉFONO / WHATSAPP *</label>
+      <input type="tel" class="cf-input" id="ctelefono" placeholder="Ej: 987654321">
+
+      <label class="cf-lbl">¿CÓMO LO RECIBES?</label>
+      <select class="cf-input" id="ctipo_entrega" onchange="toggleDeliveryFields()">
+        <option value="delivery">🛵 Delivery a domicilio</option>
+        <option value="recojo">🥡 Recojo en local</option>
+      </select>
+
+      <div id="delivery-fields">
+        <label class="cf-lbl">DIRECCIÓN *</label>
+        <input type="text" class="cf-input" id="cdireccion" placeholder="Ej: Jr. Abtao 123">
+        <label class="cf-lbl">REFERENCIA</label>
+        <input type="text" class="cf-input" id="creferencia" placeholder="Ej: Frente al parque">
+      </div>
+
+      <label class="cf-lbl">MÉTODO DE PAGO</label>
+      <select class="cf-input" id="cpago">
+        <option value="Yape">🟣 Yape</option>
+        <option value="Efectivo">💵 Efectivo</option>
+        <option value="Plin">🔵 Plin</option>
+      </select>
+
       <div class="cf-total"><span>TOTAL</span><strong id="ctotal">S/ 0.00</strong></div>
       <button class="btn-wa-p" onclick="pedirWA()">
         <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24">
@@ -2847,15 +2871,50 @@
     function abrirC() { document.getElementById('cov').classList.add('open'); document.getElementById('cp').classList.add('open'); }
     function cerrarC() { document.getElementById('cov').classList.remove('open'); document.getElementById('cp').classList.remove('open'); }
 
+    function toggleDeliveryFields() {
+      const tipo = document.getElementById('ctipo_entrega').value;
+      const fields = document.getElementById('delivery-fields');
+      if (fields) fields.style.display = tipo === 'delivery' ? 'block' : 'none';
+    }
+
     function pedirWA() {
       if (!carrito.length) { notif('⚠️ Agrega productos primero'); return; }
+      
       const nombre = document.getElementById('cnombre').value.trim();
+      const telefono = document.getElementById('ctelefono').value.trim();
+      const tipoEntrega = document.getElementById('ctipo_entrega').value;
+      const direccion = document.getElementById('cdireccion').value.trim();
+      const referencia = document.getElementById('creferencia').value.trim();
+      const metodoPago = document.getElementById('cpago').value;
+
+      if (!nombre) { notif('⚠️ Ingresa tu nombre para el pedido'); return; }
+      if (!telefono) { notif('⚠️ Ingresa tu número de teléfono'); return; }
+      if (tipoEntrega === 'delivery' && !direccion) { notif('⚠️ Ingresa la dirección de entrega'); return; }
+
       const tot = carrito.reduce((s, x) => s + (x.p * x.qty), 0);
-      let msg = " *Nuevo pedido — Mayita's*\n\n";
-      carrito.forEach(it => { msg += `• ${it.qty}x ${it.n}${it.p > 0 ? ' — S/ ' + (it.p * it.qty).toFixed(2) : ''}\n`; });
-      if (tot > 0) msg += `\n*Total: S/ ${tot.toFixed(2)}*\n`;
-      if (nombre) msg += `\n *Cliente:* ${nombre}`;
-      msg += '\n\nPedido desde la web';
+      
+      let msg = "🍔 *NUEVO PEDIDO — MAYITA'S*\n";
+      msg += "━━━━━━━━━━━━━━━━━━\n\n";
+
+      carrito.forEach(it => {
+        msg += `✅ *${it.qty}x* ${it.n}${it.p > 0 ? ' (S/ ' + (it.p * it.qty).toFixed(2) + ')' : ''}\n`;
+      });
+
+      msg += `\n💰 *TOTAL A PAGAR: S/ ${tot.toFixed(2)}*\n`;
+      msg += "━━━━━━━━━━━━━━━━━━\n\n";
+
+      msg += `👤 *Cliente:* ${nombre}\n`;
+      msg += `📞 *Teléfono:* ${telefono}\n`;
+      msg += `📍 *Entrega:* ${tipoEntrega === 'delivery' ? 'Delivery 🛵' : 'Recojo en local 🥡'}\n`;
+
+      if (tipoEntrega === 'delivery') {
+        msg += `🏠 *Dirección:* ${direccion}\n`;
+        if (referencia) msg += `🗺️ *Referencia:* ${referencia}\n`;
+      }
+
+      msg += `💳 *Pago:* ${metodoPago}\n\n`;
+      msg += "Enviado desde mayita-s.vercel.app";
+
       window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
     }
 
@@ -2899,8 +2958,13 @@
       setTimeout(() => el.classList.remove('show'), 2400);
     }
 
-    function scrollToMenu() {
+    function scrollToMenu(cat) {
       document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+      if (cat) {
+        // Buscamos el botón de la categoría en las pestañas del menú y simulamos el clic
+        const btn = Array.from(document.querySelectorAll('.cat-tab')).find(b => b.getAttribute('onclick')?.includes(`'${cat}'`));
+        if (btn) btn.click();
+      }
     }
 
     // STATS ANIMADOS
