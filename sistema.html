@@ -1323,6 +1323,309 @@
         padding: 1rem;
       }
     }
+
+    /* ═══════════ CONTEO DIARIO ═══════════ */
+    .cd-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.2rem;
+    }
+    .cd-tienda-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gris2);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 10px;
+      padding: 4px 6px 4px 12px;
+    }
+    .cd-pin { font-size: 1rem; }
+    .cd-tienda {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: var(--fh);
+      font-size: .9rem;
+      letter-spacing: 1px;
+      padding: 8px 6px;
+      outline: none;
+      cursor: pointer;
+    }
+    .cd-tienda option { background: var(--gris2); }
+    .cd-views { display: flex; gap: 8px; }
+    .cd-view {
+      background: var(--gris);
+      border: 1px solid rgba(255, 255, 255, .07);
+      color: rgba(255, 255, 255, .5);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--fh);
+      font-size: .78rem;
+      letter-spacing: 1px;
+      transition: all .2s;
+    }
+    .cd-view:hover, .cd-view.active {
+      background: var(--amarillo);
+      border-color: var(--amarillo);
+      color: #000;
+    }
+    .cd-daybar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .cd-dayinfo { display: flex; align-items: center; gap: 12px; }
+    .cd-dayfecha {
+      font-family: var(--fd);
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .cd-daybadge {
+      font-family: var(--fh);
+      font-size: .68rem;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(34, 197, 94, .15);
+      color: var(--verde);
+      border: 1px solid rgba(34, 197, 94, .35);
+    }
+    .cd-daybadge.cerrado {
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .55);
+      border-color: rgba(255, 255, 255, .15);
+    }
+    .cd-dayactions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .cd-cerrar { background: var(--rojo) !important; }
+
+    .cd-table-wrap {
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 12px;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+    .cd-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      min-width: 560px;
+    }
+    .cd-table thead tr {
+      background: var(--gris);
+    }
+    .cd-table th {
+      font-family: var(--fh);
+      font-size: .66rem;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, .4);
+      font-weight: 400;
+      padding: 11px 10px;
+      text-align: center;
+    }
+    .cd-lock { opacity: .6; font-size: .8em; }
+    .cd-table td {
+      padding: 9px 10px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      vertical-align: middle;
+    }
+    .cd-prod {
+      text-align: left !important;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .cd-prod .cd-emoji { margin-right: 6px; }
+    .cd-inicio { color: #7dd3fc; font-weight: 800; }
+    .cd-row.r { background: rgba(200, 24, 26, .12); box-shadow: inset 3px 0 0 var(--rojo); }
+    .cd-row.n { background: rgba(255, 140, 0, .09); box-shadow: inset 3px 0 0 var(--naranja); }
+
+    /* Inputs dentro de la tabla */
+    .cd-cell-input {
+      width: 52px;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: #fff;
+      font-family: var(--fb);
+      font-size: .92rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 6px 4px;
+      border-radius: 7px;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .cd-cell-input:focus { border-color: var(--amarillo); }
+    .cd-cell-input:disabled {
+      background: transparent;
+      border-color: transparent;
+      color: rgba(255, 255, 255, .4);
+      font-weight: 400;
+    }
+    .cd-pair { display: inline-flex; align-items: center; gap: 4px; }
+    .cd-pair .cd-cell-input { width: 38px; }
+    .cd-pair .y { color: rgba(255, 255, 255, .35); font-size: .8rem; font-weight: 700; }
+    .cd-final-val { font-weight: 800; font-size: .98rem; }
+
+    .cd-estado-badge {
+      font-family: var(--fh);
+      font-size: .6rem;
+      letter-spacing: .5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .cd-estado-badge.r {
+      background: rgba(200, 24, 26, .2);
+      color: #ff6b6b;
+      border: 1px solid rgba(200, 24, 26, .5);
+    }
+    .cd-estado-badge.n {
+      background: rgba(255, 140, 0, .18);
+      color: var(--naranja);
+      border: 1px solid rgba(255, 140, 0, .35);
+    }
+    .cd-dot-ok {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--verde); display: inline-block;
+    }
+
+    .cd-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 12px;
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .4);
+    }
+    .cd-legend .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      display: inline-block; margin-right: 5px; vertical-align: middle;
+    }
+    .cd-legend .dot.v { background: var(--verde); }
+    .cd-legend .dot.n { background: var(--naranja); border-radius: 2px; }
+    .cd-legend .dot.r { background: var(--rojo); border-radius: 2px; }
+    .cd-legend-pkg { margin-left: auto; color: rgba(255, 255, 255, .3); }
+
+    .cd-nota-wrap {
+      background: var(--gris2);
+      border: 1px solid rgba(255, 255, 255, .05);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      margin-top: 1.4rem;
+    }
+    .cd-nota-label {
+      font-family: var(--fh);
+      font-size: .75rem;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, .45);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .cd-nota {
+      width: 100%;
+      background: var(--gris);
+      border: 1px solid rgba(255, 255, 255, .08);
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: var(--fb);
+      font-size: .88rem;
+      min-height: 70px;
+      resize: vertical;
+      outline: none;
+    }
+    .cd-nota:focus { border-color: var(--amarillo); }
+    .cd-nota-readonly {
+      background: var(--gris);
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .65);
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      min-height: 20px;
+    }
+
+    .cd-hist-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .cd-hist-list { display: flex; flex-direction: column; gap: 8px; }
+    .cd-hist-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--gris2);
+      border: 1px solid rgba(255, 255, 255, .05);
+      border-radius: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .cd-hist-row:hover {
+      border-color: rgba(255, 215, 0, .3);
+      background: var(--gris);
+    }
+    .cd-hist-fecha {
+      font-family: var(--fd);
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      min-width: 110px;
+    }
+    .cd-hist-dia { color: rgba(255, 255, 255, .35); font-size: .7rem; font-family: var(--fh); letter-spacing: 1px; }
+    .cd-hist-nota {
+      flex: 1;
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .45);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cd-hist-estado {
+      font-family: var(--fh);
+      font-size: .62rem;
+      letter-spacing: 1px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, .07);
+      color: rgba(255, 255, 255, .5);
+    }
+    .cd-hist-estado.cerrado { background: rgba(34, 197, 94, .15); color: var(--verde); }
+    .cd-hist-arrow { color: rgba(255, 255, 255, .25); }
+
+    .btn-del {
+      background: transparent;
+      border: 1px solid rgba(200, 24, 26, .4);
+      color: #ff6b6b;
+      padding: 9px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--fh);
+      font-size: .75rem;
+      letter-spacing: 1px;
+      transition: all .2s;
+    }
+    .btn-del:hover { background: var(--rojo); color: #fff; }
+
+    @media(max-width:640px) {
+      .cd-table { font-size: .82rem; }
+      .cd-cell-input { width: 44px; }
+      .cd-pair .cd-cell-input { width: 32px; }
+      .cd-legend-pkg { margin-left: 0; width: 100%; }
+    }
   </style>
 </head>
 
@@ -1366,162 +1669,88 @@
 
       <!-- TABS -->
       <div class="tabs" id="tabsWrap">
-        <button class="tab active" onclick="showTab('compras',this)">📦 Registrar Compra</button>
-        <button class="tab" onclick="showTab('historial',this)" id="tabHistorial">📋 Historial</button>
-        <button class="tab" onclick="showTab('stock',this)" id="tabStock">🗄️ Stock Insumos</button>
-        <button class="tab admin-only" onclick="showTab('resumen',this)" id="tabResumen">📊 Resumen</button>
+        <button class="tab active" onclick="showTab('conteo',this)">📋 Conteo Diario</button>
         <button class="tab admin-only" onclick="showTab('productos',this)" id="tabProductos">🍔 Productos Web</button>
         <button class="tab admin-only" onclick="showTab('promos',this)" id="tabPromos">🎁 Promos</button>
         <button class="tab admin-only" onclick="showTab('anuncios',this)" id="tabAnuncios">📣 Anuncios</button>
       </div>
 
-      <!-- TAB: REGISTRAR COMPRA -->
-      <div class="tab-panel active" id="panel-compras">
-        <div style="max-width:560px;">
-          <div
-            style="font-family:var(--fh);font-size:1rem;color:rgba(255,255,255,.5);letter-spacing:2px;margin-bottom:1.2rem;">
-            NUEVA COMPRA DEL DÍA</div>
-          <div class="form-grid"
-            style="background:var(--gris2);border-radius:14px;padding:1.5rem;border:1px solid rgba(255,255,255,.05);gap:14px;">
-            <div class="fg">
-              <label>FECHA *</label>
-              <input type="date" id="fc-fecha">
+      <!-- TAB: CONTEO DIARIO -->
+      <div class="tab-panel active" id="panel-conteo">
+
+        <!-- Barra superior: selector de tienda + sub-vistas -->
+        <div class="cd-top">
+          <div class="cd-tienda-wrap">
+            <span class="cd-pin">📍</span>
+            <select class="cd-tienda" id="cdTienda" onchange="cdCambiarTienda(this.value)">
+              <option value="mayro">Tienda Mayro</option>
+              <option value="amarilis">Tienda Amarilis</option>
+              <option value="portales">Tienda Portales</option>
+            </select>
+          </div>
+          <div class="cd-views">
+            <button class="cd-view active" id="cdViewReg" onclick="cdMostrarVista('registro',this)">🗓️ Registro de hoy</button>
+            <button class="cd-view admin-only" id="cdViewHist" onclick="cdMostrarVista('historial',this)">📚 Historial</button>
+          </div>
+        </div>
+
+        <!-- ░░ VISTA: REGISTRO DE HOY ░░ -->
+        <div id="cdVistaRegistro">
+          <div class="cd-daybar">
+            <div class="cd-dayinfo">
+              <span class="cd-dayfecha" id="cdFecha">—</span>
+              <span class="cd-daybadge" id="cdEstado">ABIERTO</span>
             </div>
-            <div class="fg">
-              <label>INSUMO / PRODUCTO *</label>
-              <input type="text" id="fc-nombre" placeholder="Ej: Papa, Aceite, Carne...">
+            <div class="cd-dayactions">
+              <button class="btn-mini" onclick="cdAgregarInsumo()">+ Agregar producto</button>
+              <button class="btn-mini cd-cerrar admin-only" id="cdBtnCerrar" onclick="cdCerrarDia()">🔒 Cerrar día</button>
             </div>
-            <div class="fg">
-              <label>CATEGORÍA</label>
-              <select id="fc-cat">
-                <option value="ingrediente">🥩 Ingrediente</option>
-                <option value="bebidas_calientes">☕ Bebida Caliente</option>
-                <option value="bebidas_frias">🧊 Bebida Fría</option>
-                <option value="empaque">📦 Empaque</option>
-                <option value="condimento">🧂 Condimento</option>
-                <option value="limpieza">🧹 Limpieza</option>
-                <option value="otro">📌 Otro</option>
-              </select>
-            </div>
-            <div class="fg">
-              <label>CANTIDAD *</label>
-              <input type="number" id="fc-cantidad" placeholder="Ej: 10" min="0" step="0.01">
-            </div>
-            <div class="fg">
-              <label>UNIDAD</label>
-              <select id="fc-unidad">
-                <option value="kg">kg</option>
-                <option value="g">g</option>
-                <option value="L">L</option>
-                <option value="ml">ml</option>
-                <option value="unid">unid</option>
-                <option value="caja">caja</option>
-                <option value="bolsa">bolsa</option>
-                <option value="paquete">paquete</option>
-              </select>
-            </div>
-            <div class="fg">
-              <label>PRECIO TOTAL S/ *</label>
-              <input type="number" id="fc-precio" placeholder="Ej: 25.50" min="0" step="0.01">
-            </div>
-            <div class="fg">
-              <label>PROVEEDOR</label>
-              <input type="text" id="fc-proveedor" placeholder="Ej: Mercado Central">
-            </div>
-            <div class="fg form-grid full">
-              <label>OBSERVACIONES</label>
-              <textarea id="fc-obs" placeholder="Notas adicionales..."></textarea>
-            </div>
-            <div style="grid-column:1/-1">
-              <button class="btn-guardar" onclick="guardarCompra()" style="width:100%;">+ REGISTRAR COMPRA</button>
+          </div>
+
+          <div class="cd-table-wrap">
+            <table class="cd-table" id="cdTable">
+              <thead>
+                <tr>
+                  <th style="text-align:left;">PRODUCTO</th>
+                  <th>ANTERIOR <span class="cd-lock" id="cdHeadLock">🔒</span></th>
+                  <th>INGRESO</th>
+                  <th>INICIO</th>
+                  <th>FINAL</th>
+                  <th style="text-align:right;">ESTADO</th>
+                </tr>
+              </thead>
+              <tbody id="cdTbody"></tbody>
+            </table>
+          </div>
+
+          <div class="cd-legend">
+            <span><i class="dot v"></i>Bien</span>
+            <span><i class="dot n"></i>Por revisar</span>
+            <span><i class="dot r"></i>Por acabar / cero</span>
+            <span class="cd-legend-pkg" id="cdLegendPkg">🌭 "18 y 2" = 18 paquetes y 2 sueltas</span>
+          </div>
+
+          <!-- Nota del día -->
+          <div class="cd-nota-wrap">
+            <label class="cd-nota-label">📝 ¿Qué se hizo hoy? (nota del día)</label>
+            <textarea class="cd-nota" id="cdNota" placeholder="Ej: se acabó el aceite, vino el proveedor de pollo, día flojo por lluvia..."></textarea>
+            <div style="text-align:right;margin-top:8px;">
+              <button class="btn-mini" style="background:var(--verde);" onclick="cdGuardarNota()">💾 Guardar nota</button>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- TAB: HISTORIAL -->
-      <div class="tab-panel" id="panel-historial">
-
-        <!-- ALERTAS -->
-        <div class="alertas-bar" id="alertasBar">
-          <div class="alertas-title">⚠️ INSUMOS CON STOCK BAJO</div>
-          <div class="alertas-list" id="alertasList"></div>
-        </div>
-
-        <!-- STATS -->
-        <div class="stats-grid" id="statsGrid"></div>
-
-        <!-- TOOLBAR -->
-        <div class="toolbar">
-          <div class="search-wrap">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="8" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
-            <input type="text" id="searchInput" placeholder="Buscar insumo, proveedor..." oninput="renderHistorial()">
+        <!-- ░░ VISTA: HISTORIAL (solo admin) ░░ -->
+        <div id="cdVistaHistorial" style="display:none;">
+          <div class="cd-hist-toolbar">
+            <span style="font-family:var(--fh);letter-spacing:1px;color:rgba(255,255,255,.4);font-size:.8rem;">DÍAS GUARDADOS</span>
+            <input type="month" class="sel" id="cdHistMes" onchange="cdRenderHistorial()" style="width:auto;">
           </div>
-          <input type="date" class="sel" id="filtroFecha" onchange="renderHistorial()" style="width:auto;">
-          <select class="sel" id="filtroCat" onchange="renderHistorial()">
-            <option value="">Todas las categorías</option>
-            <option value="ingrediente">🥩 Ingrediente</option>
-            <option value="bebidas_calientes">☕ Bebida Caliente</option>
-            <option value="bebidas_frias">🧊 Bebida Fría</option>
-            <option value="empaque">📦 Empaque</option>
-            <option value="condimento">🧂 Condimento</option>
-            <option value="limpieza">🧹 Limpieza</option>
-            <option value="otro">📌 Otro</option>
-          </select>
-          <button class="btn-excel" onclick="exportarExcel()">⬇ EXCEL</button>
+          <div id="cdHistList" class="cd-hist-list"></div>
         </div>
 
-        <!-- TABLA -->
-        <div class="tabla-wrap">
-          <div class="tabla-head cols-admin" id="tablaHead">
-            <span>#</span>
-            <span>INSUMO</span>
-            <span>CANTIDAD</span>
-            <span>PRECIO S/</span>
-            <span>CATEGORÍA</span>
-            <span>PROVEEDOR</span>
-            <span>FECHA</span>
-            <span>ACCIONES</span>
-          </div>
-          <div id="tablaBody"></div>
-        </div>
       </div>
 
-      <!-- TAB: STOCK -->
-      <div class="tab-panel" id="panel-stock">
-        <div
-          style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap;gap:10px;">
-          <div style="font-family:var(--fh);font-size:.85rem;color:rgba(255,255,255,.4);letter-spacing:2px;">STOCK
-            ACTUAL POR INSUMO</div>
-          <div style="font-size:.75rem;color:rgba(255,255,255,.25);">Calculado desde el historial de compras</div>
-        </div>
-        <div class="insumos-grid" id="stockGrid"></div>
-      </div>
-
-      <!-- TAB: RESUMEN (solo admin) -->
-      <div class="tab-panel" id="panel-resumen">
-        <div
-          style="font-family:var(--fh);font-size:.85rem;color:rgba(255,255,255,.4);letter-spacing:2px;margin-bottom:1.2rem;">
-          GASTO POR FECHA</div>
-        <div class="toolbar" style="margin-bottom:1rem;">
-          <select class="sel" id="filtroMes" onchange="renderResumen()">
-            <option value="">Este mes</option>
-            <option value="all">Todo el historial</option>
-          </select>
-        </div>
-        <div class="resumen-fecha" id="resumenBody">
-          <div class="rf-head"><span>FECHA</span><span>COMPRAS</span><span>TOTAL S/</span></div>
-        </div>
-        <div
-          style="background:var(--gris2);border-radius:12px;padding:1.2rem 1.4rem;margin-top:1rem;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.05);">
-          <span style="font-family:var(--fh);letter-spacing:2px;font-size:.82rem;color:rgba(255,255,255,.4);">TOTAL
-            PERÍODO</span>
-          <span style="font-family:var(--fd);font-size:2rem;color:var(--amarillo);" id="resumenTotal">S/ 0.00</span>
-        </div>
-      </div>
 
       <!-- TAB: PRODUCTOS WEB (solo admin) -->
       <div class="tab-panel" id="panel-productos">
@@ -1596,46 +1825,58 @@
     </div>
   </div>
 
-  <!-- MODAL EDITAR (solo admin) -->
-  <div class="modal-ov" id="modalEdit">
+  <!-- MODAL INSUMO DEL CONTEO (crear/editar) -->
+  <div class="modal-ov" id="modalInsumo">
     <div class="modal-box">
-      <div class="modal-title">EDITAR COMPRA</div>
-      <div class="modal-sub">Solo el administrador puede editar registros</div>
-      <input type="hidden" id="editId">
+      <div class="modal-title" id="insModalTitle">NUEVO PRODUCTO</div>
+      <div class="modal-sub" id="insModalSub">Se agrega solo a esta tienda</div>
+      <input type="hidden" id="insId">
       <div class="form-grid">
-        <div class="fg"><label>FECHA</label><input type="date" id="e-fecha"></div>
-        <div class="fg"><label>INSUMO</label><input type="text" id="e-nombre"></div>
-        <div class="fg"><label>CATEGORÍA</label>
-          <select id="e-cat">
-            <option value="ingrediente">🥩 Ingrediente</option>
-            <option value="bebidas_calientes">☕ Bebida Caliente</option>
-            <option value="bebidas_frias">🧊 Bebida Fría</option>
-            <option value="empaque">📦 Empaque</option>
-            <option value="condimento">🧂 Condimento</option>
-            <option value="limpieza">🧹 Limpieza</option>
-            <option value="otro">📌 Otro</option>
-          </select>
+        <div class="fg"><label>NOMBRE *</label><input type="text" id="ins-nombre" placeholder="Ej: Salchicha, Octavo..."></div>
+        <div class="fg"><label>EMOJI</label><input type="text" id="ins-emoji" placeholder="🍗" maxlength="2"></div>
+        <div class="fg form-grid full">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" id="ins-paquete" style="width:auto;" onchange="cdTogglePaquete(this.checked)">
+            Se cuenta por paquete + sueltas (ej: "18 y 2")
+          </label>
         </div>
-        <div class="fg"><label>CANTIDAD</label><input type="number" id="e-cantidad" min="0" step="0.01"></div>
-        <div class="fg"><label>UNIDAD</label>
-          <select id="e-unidad">
-            <option value="kg">kg</option>
-            <option value="g">g</option>
-            <option value="L">L</option>
-            <option value="ml">ml</option>
-            <option value="unid">unid</option>
-            <option value="caja">caja</option>
-            <option value="bolsa">bolsa</option>
-            <option value="paquete">paquete</option>
-          </select>
+        <div class="fg" id="ins-porpaq-wrap" style="display:none;">
+          <label>UNIDADES POR PAQUETE *</label>
+          <input type="number" id="ins-porpaq" placeholder="Ej: 20" min="1" step="1">
         </div>
-        <div class="fg"><label>PRECIO S/</label><input type="number" id="e-precio" min="0" step="0.01"></div>
-        <div class="fg"><label>PROVEEDOR</label><input type="text" id="e-proveedor"></div>
-        <div class="fg form-grid full"><label>OBSERVACIONES</label><textarea id="e-obs"></textarea></div>
+        <div class="fg">
+          <label>AVISAR EN ROJO CUANDO QUEDEN MENOS DE</label>
+          <input type="number" id="ins-minimo" placeholder="Ej: 5" min="0" step="1">
+          <div style="font-size:.66rem;color:rgba(255,255,255,.3);margin-top:4px;" id="ins-minimo-hint">en unidades</div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel2" onclick="cerrarModal()">CANCELAR</button>
-        <button class="btn-guardar" onclick="actualizarCompra()">GUARDAR CAMBIOS</button>
+        <button class="btn-cancel2" onclick="cdCerrarModalInsumo()">CANCELAR</button>
+        <button class="btn-del admin-only" id="insBtnDel" style="display:none;margin-right:auto;" onclick="cdBorrarInsumo()">🗑 ELIMINAR</button>
+        <button class="btn-guardar" onclick="cdGuardarInsumo()">GUARDAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL VER DÍA DEL HISTORIAL -->
+  <div class="modal-ov" id="modalDia">
+    <div class="modal-box" style="max-width:640px;">
+      <div class="modal-title" id="diaModalTitle">DÍA</div>
+      <div class="modal-sub" id="diaModalSub">—</div>
+      <div class="cd-table-wrap" style="margin-top:.5rem;">
+        <table class="cd-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;">PRODUCTO</th>
+              <th>ANT.</th><th>ING.</th><th>INICIO</th><th>FINAL</th>
+            </tr>
+          </thead>
+          <tbody id="diaModalBody"></tbody>
+        </table>
+      </div>
+      <div id="diaModalNota" class="cd-nota-readonly"></div>
+      <div class="modal-footer">
+        <button class="btn-cancel2" onclick="document.getElementById('modalDia').classList.remove('open')">CERRAR</button>
       </div>
     </div>
   </div>
@@ -1712,20 +1953,6 @@
     </div>
   </div>
 
-  <!-- CONFIRM DELETE -->
-  <div class="modal-ov" id="modalDel">
-    <div class="modal-box" style="max-width:360px;text-align:center;">
-      <div style="font-size:2.5rem;margin-bottom:1rem;">⚠️</div>
-      <div class="modal-title" style="font-size:1.5rem;">¿ELIMINAR?</div>
-      <div style="font-size:.85rem;color:rgba(255,255,255,.45);margin:8px 0 1.5rem;font-family:var(--fh);">Esta acción
-        no se puede deshacer.</div>
-      <div style="display:flex;gap:10px;">
-        <button class="btn-cancel2" style="flex:1;" onclick="cerrarDel()">CANCELAR</button>
-        <button class="btn-guardar" style="flex:1;background:#c0392b;" onclick="confirmarDel()">ELIMINAR</button>
-      </div>
-    </div>
-  </div>
-
   <div class="notif" id="notif"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1733,7 +1960,6 @@
     // ── SUPABASE CONFIG ──
     const SB_URL = 'https://vazsotruzgxfftavonzv.supabase.co';
     const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhenNvdHJ1emd4ZmZ0YXZvbnp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5ODI1OTksImV4cCI6MjA5NDU1ODU5OX0.pRMuiYQStv7mn_39scbJnq0HH_u15qPuvGguNnZ7Y0M';
-    const TABLE = 'compras';
     const BUCKET = 'mayitas';
     const STORAGE_URL = `${SB_URL}/storage/v1/object/public/${BUCKET}/`;
     const supa = window.supabase.createClient(SB_URL, SB_KEY);
@@ -1764,8 +1990,6 @@
 
     // ── ESTADO ──
     let usuario = null;
-    let compras = [];
-    let delTarget = null;
     let productos = [];
     let promos = [];
     let anuncios = [];
@@ -1810,9 +2034,9 @@
     async function iniciarSesion() {
       const { data: { session } } = await supa.auth.getSession();
       if (!session) return;
-      const { data: prof, error } = await supa.from('profiles').select('rol,nombre').single();
+      const { data: prof, error } = await supa.from('profiles').select('rol,nombre,tienda').single();
       if (error || !prof) { document.getElementById('lerr').textContent = 'No se pudo cargar el perfil. Contacta al admin.'; return; }
-      usuario = { nombre: prof.nombre, rol: prof.rol, user: session.user.email };
+      usuario = { nombre: prof.nombre, rol: prof.rol, tienda: prof.tienda || null, user: session.user.email };
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('app').classList.add('visible');
       document.getElementById('hUser').textContent = usuario.nombre;
@@ -1829,17 +2053,12 @@
 
     // ── INIT ──
     async function initApp() {
-      document.getElementById('fc-fecha').value = hoy();
-      document.getElementById('filtroFecha').value = '';
       document.querySelectorAll('.admin-only').forEach(el => {
         el.style.display = usuario.rol === 'admin' ? '' : 'none';
       });
-      if (usuario.rol === 'personal') {
-        document.getElementById('tablaHead').className = 'tabla-head cols-personal';
-      }
-      await cargarCompras();
+      cdInit();
+      // El admin además precarga el menú web
       if (usuario.rol === 'admin') {
-        // Carga en paralelo todo lo del menú web
         cargarProductos();
         cargarPromos();
         cargarAnuncios();
@@ -1847,297 +2066,18 @@
     }
 
     // ── CARGAR DESDE SUPABASE ──
-    async function cargarCompras() {
-      try {
-        loading(true);
-        const data = await sbFetch('GET', `${TABLE}?order=fecha.desc,creado_en.desc&select=*`);
-        compras = data.map(r => ({
-          id: r.id,
-          fecha: r.fecha,
-          nombre: r.nombre,
-          cat: r.cat,
-          cantidad: parseFloat(r.cantidad),
-          unidad: r.unidad,
-          precio: parseFloat(r.precio),
-          proveedor: r.proveedor || '',
-          obs: r.obs || '',
-          registradoPor: r.registrado_por || '',
-          creadoEn: r.creado_en,
-        }));
-        renderStats();
-        renderHistorial();
-        renderStock();
-        renderResumen();
-      } catch (e) {
-        loading(false);
-        notif('❌ Error al conectar con Supabase');
-        console.error(e);
-      }
-    }
 
-    // ── TABS ──
+    // ── CAMBIO DE PESTAÑA ──
     function showTab(id, btn) {
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-      document.getElementById('panel-' + id).classList.add('active');
-      btn.classList.add('active');
-      if (id === 'historial') renderHistorial();
-      if (id === 'stock') renderStock();
-      if (id === 'resumen') renderResumen();
+      const panel = document.getElementById('panel-' + id);
+      if (panel) panel.classList.add('active');
+      if (btn) btn.classList.add('active');
+      if (id === 'conteo') cdCargar();
       if (id === 'productos') renderProductos();
       if (id === 'promos') renderPromos();
       if (id === 'anuncios') renderAnuncios();
-    }
-
-    // ── GUARDAR COMPRA ──
-    async function guardarCompra() {
-      const fecha = document.getElementById('fc-fecha').value;
-      const nombre = document.getElementById('fc-nombre').value.trim();
-      const cat = document.getElementById('fc-cat').value;
-      const cantidad = parseFloat(document.getElementById('fc-cantidad').value);
-      const unidad = document.getElementById('fc-unidad').value;
-      const precio = parseFloat(document.getElementById('fc-precio').value);
-      const prov = document.getElementById('fc-proveedor').value.trim();
-      const obs = document.getElementById('fc-obs').value.trim();
-
-      if (!fecha || !nombre || isNaN(cantidad) || isNaN(precio)) {
-        notif('⚠️ Completa los campos obligatorios (*)'); return;
-      }
-      if (precio < 0 || cantidad <= 0) {
-        notif('⚠️ Precio y cantidad deben ser positivos'); return;
-      }
-
-      const btn = document.querySelector('.btn-guardar');
-      btn.textContent = 'GUARDANDO...'; btn.disabled = true;
-
-      try {
-        const [res] = await sbFetch('POST', TABLE, {
-          fecha, nombre: nombre.toLowerCase(), cat,
-          cantidad, unidad, precio,
-          proveedor: prov || null, obs: obs || null,
-          registrado_por: usuario.nombre,
-        });
-        compras.unshift({
-          id: res.id, fecha, nombre: nombre.toLowerCase(), cat,
-          cantidad, unidad, precio, proveedor: prov, obs,
-          registradoPor: usuario.nombre, creadoEn: res.creado_en,
-        });
-        // Limpiar form
-        ['fc-nombre', 'fc-cantidad', 'fc-precio', 'fc-proveedor', 'fc-obs']
-          .forEach(id => document.getElementById(id).value = '');
-        notif('✅ Compra registrada', 'verde');
-        renderStats(); renderHistorial(); renderStock();
-      } catch (e) {
-        notif('❌ Error al guardar. Intenta de nuevo.');
-        console.error(e);
-      } finally {
-        btn.textContent = '+ REGISTRAR COMPRA'; btn.disabled = false;
-      }
-    }
-
-    // ── STATS ──
-    function renderStats() {
-      const hoyStr = hoy(), mesActual = hoyStr.substring(0, 7);
-      const semanaMs = 7 * 24 * 60 * 60 * 1000;
-      const gastoHoy = compras.filter(c => c.fecha === hoyStr).reduce((s, c) => s + c.precio, 0);
-      const gastoSemana = compras.filter(c => (new Date() - new Date(c.fecha + 'T00:00:00')) <= semanaMs).reduce((s, c) => s + c.precio, 0);
-      const gastoMes = compras.filter(c => c.fecha.startsWith(mesActual)).reduce((s, c) => s + c.precio, 0);
-      const totalHoy = compras.filter(c => c.fecha === hoyStr).length;
-
-      document.getElementById('statsGrid').innerHTML = `
-    <div class="stat-card"><div class="sc-val c-amarillo">S/ ${gastoHoy.toFixed(2)}</div><div class="sc-lbl">GASTO DE HOY</div><div class="sc-sub">${totalHoy} registro${totalHoy !== 1 ? 's' : ''}</div></div>
-    <div class="stat-card"><div class="sc-val c-naranja">S/ ${gastoSemana.toFixed(2)}</div><div class="sc-lbl">ESTA SEMANA</div><div class="sc-sub">Últimos 7 días</div></div>
-    <div class="stat-card"><div class="sc-val c-rojo">S/ ${gastoMes.toFixed(2)}</div><div class="sc-lbl">ESTE MES</div><div class="sc-sub">${mesActual}</div></div>
-    <div class="stat-card"><div class="sc-val c-verde">${compras.length}</div><div class="sc-lbl">TOTAL REGISTROS</div><div class="sc-sub">En todo el historial</div></div>
-  `;
-      renderAlertas();
-    }
-
-    // ── ALERTAS ──
-    function renderAlertas() {
-      const bajos = calcStock().filter(i => i.stock < i.minimo);
-      const bar = document.getElementById('alertasBar');
-      const list = document.getElementById('alertasList');
-      if (!bajos.length) { bar.classList.remove('visible'); return; }
-      bar.classList.add('visible');
-      list.innerHTML = bajos.map(i => `<span class="alerta-tag">⚠️ ${capitalize(i.nombre)} — ${i.stock.toFixed(1)} ${i.unidad}</span>`).join('');
-    }
-
-    // ── HISTORIAL ──
-    function renderHistorial() {
-      const q = (document.getElementById('searchInput')?.value || '').toLowerCase();
-      const fecha = document.getElementById('filtroFecha')?.value || '';
-      const cat = document.getElementById('filtroCat')?.value || '';
-
-      let lista = compras.filter(c => {
-        if (q && !c.nombre.includes(q) && !(c.proveedor || '').toLowerCase().includes(q)) return false;
-        if (fecha && c.fecha !== fecha) return false;
-        if (cat && c.cat !== cat) return false;
-        return true;
-      });
-
-      const body = document.getElementById('tablaBody');
-      if (!lista.length) {
-        body.innerHTML = '<div class="tabla-empty"><svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>SIN RESULTADOS</p></div>';
-        return;
-      }
-
-      const isAdmin = usuario?.rol === 'admin';
-      body.innerHTML = lista.map((c, i) => `
-    <div class="tabla-row ${isAdmin ? 'cols-admin' : 'cols-personal'}">
-      <span class="cell cell-num" style="color:rgba(255,255,255,.3)">${i + 1}</span>
-      <span class="cell" title="${c.nombre}">${CAT_ICONS[c.cat] || '📌'} ${capitalize(c.nombre)}</span>
-      <span class="cell cell-num">${c.cantidad} ${c.unidad}</span>
-      <span class="cell cell-price">S/ ${c.precio.toFixed(2)}</span>
-      <span class="cell" style="font-size:.72rem;color:rgba(255,255,255,.4)">${capitalize(c.cat)}</span>
-      <span class="cell cell-who">${c.proveedor || '—'}</span>
-      <span class="cell cell-date">${formatFecha(c.fecha)}<br><span style="font-size:.65rem;color:rgba(255,255,255,.25)">${c.registradoPor}</span></span>
-      ${isAdmin ? `<span class="cell"><div class="acciones">
-        <button class="btn-edit" onclick="abrirEdit('${c.id}')" title="Editar">✏️</button>
-        <button class="btn-del2" onclick="pedirDel('${c.id}')" title="Eliminar">🗑</button>
-      </div></span>`: ''}
-    </div>
-  `).join('');
-      renderStats();
-    }
-
-    // ── STOCK ──
-    function calcStock() {
-      const mapa = {};
-      compras.forEach(c => {
-        const k = c.nombre.trim().toLowerCase();
-        if (!mapa[k]) mapa[k] = { nombre: k, stock: 0, unidad: c.unidad, minimo: 5, cat: c.cat };
-        mapa[k].stock += c.cantidad;
-      });
-      return Object.values(mapa).sort((a, b) => a.nombre.localeCompare(b.nombre));
-    }
-
-    function renderStock() {
-      const insumos = calcStock();
-      const grid = document.getElementById('stockGrid');
-      if (!insumos.length) {
-        grid.innerHTML = '<div style="color:rgba(255,255,255,.25);font-family:var(--fh);letter-spacing:1px;padding:2rem;">AÚN NO HAY COMPRAS REGISTRADAS</div>';
-        return;
-      }
-      grid.innerHTML = insumos.map(i => {
-        const pct = Math.min(100, (i.stock / Math.max(i.stock, i.minimo * 2)) * 100);
-        const bajo = i.stock < i.minimo;
-        const color = bajo ? 'var(--rojo)' : i.stock < i.minimo * 1.5 ? 'var(--naranja)' : 'var(--verde)';
-        return `<div class="insumo-card ${bajo ? 'bajo' : ''}">
-      <div class="ic-nombre">${CAT_ICONS[i.cat] || '📌'} ${capitalize(i.nombre)}</div>
-      <div class="ic-stock ${bajo ? 'bajo' : ''}">${i.stock.toFixed(1)}</div>
-      <div class="ic-unidad">${i.unidad} en stock</div>
-      <div class="ic-bar"><div class="ic-bar-fill" style="width:${pct}%;background:${color}"></div></div>
-      ${bajo ? '<div style="font-size:.68rem;color:var(--rojo);margin-top:6px;font-family:var(--fh);letter-spacing:1px;">⚠️ STOCK BAJO</div>' : ''}
-    </div>`;
-      }).join('');
-    }
-
-    // ── RESUMEN ──
-    function renderResumen() {
-      const filtroMes = document.getElementById('filtroMes')?.value || '';
-      const mesActual = hoy().substring(0, 7);
-      let lista = filtroMes === 'all' ? compras : compras.filter(c => c.fecha.startsWith(mesActual));
-      const porFecha = {};
-      lista.forEach(c => {
-        if (!porFecha[c.fecha]) porFecha[c.fecha] = { items: 0, total: 0 };
-        porFecha[c.fecha].items++; porFecha[c.fecha].total += c.precio;
-      });
-      const fechas = Object.keys(porFecha).sort((a, b) => b.localeCompare(a));
-      const total = lista.reduce((s, c) => s + c.precio, 0);
-      const body = document.getElementById('resumenBody');
-      body.innerHTML = '<div class="rf-head"><span>FECHA</span><span>COMPRAS</span><span>TOTAL S/</span></div>'
-        + (fechas.length ? fechas.map(f => `
-      <div class="rf-row">
-        <span class="rf-fecha">${formatFecha(f)}</span>
-        <span class="rf-items">${porFecha[f].items} registro${porFecha[f].items !== 1 ? 's' : ''}</span>
-        <span class="rf-total">S/ ${porFecha[f].total.toFixed(2)}</span>
-      </div>`).join('') : '<div class="tabla-empty"><p>SIN DATOS EN ESTE PERÍODO</p></div>');
-      document.getElementById('resumenTotal').textContent = 'S/ ' + total.toFixed(2);
-    }
-
-    // ── EDITAR (admin) ──
-    function abrirEdit(id) {
-      const c = compras.find(x => x.id === id); if (!c) return;
-      document.getElementById('editId').value = id;
-      document.getElementById('e-fecha').value = c.fecha;
-      document.getElementById('e-nombre').value = c.nombre;
-      document.getElementById('e-cat').value = c.cat;
-      document.getElementById('e-cantidad').value = c.cantidad;
-      document.getElementById('e-unidad').value = c.unidad;
-      document.getElementById('e-precio').value = c.precio;
-      document.getElementById('e-proveedor').value = c.proveedor || '';
-      document.getElementById('e-obs').value = c.obs || '';
-      document.getElementById('modalEdit').classList.add('open');
-    }
-
-    async function actualizarCompra() {
-      const id = document.getElementById('editId').value;
-      const idx = compras.findIndex(x => x.id === id); if (idx < 0) return;
-      const updated = {
-        fecha: document.getElementById('e-fecha').value,
-        nombre: document.getElementById('e-nombre').value.trim().toLowerCase(),
-        cat: document.getElementById('e-cat').value,
-        cantidad: parseFloat(document.getElementById('e-cantidad').value),
-        unidad: document.getElementById('e-unidad').value,
-        precio: parseFloat(document.getElementById('e-precio').value),
-        proveedor: document.getElementById('e-proveedor').value.trim() || null,
-        obs: document.getElementById('e-obs').value.trim() || null,
-        editado_por: usuario.nombre,
-        editado_en: new Date().toISOString(),
-      };
-      try {
-        await sbFetch('PATCH', `${TABLE}?id=eq.${id}`, updated);
-        compras[idx] = { ...compras[idx], ...updated, proveedor: updated.proveedor || '', obs: updated.obs || '' };
-        cerrarModal();
-        renderHistorial(); renderStock(); renderResumen();
-        notif('✅ Compra actualizada', 'verde');
-      } catch (e) {
-        notif('❌ Error al actualizar'); console.error(e);
-      }
-    }
-
-    function cerrarModal() { document.getElementById('modalEdit').classList.remove('open'); }
-
-    // ── ELIMINAR ──
-    function pedirDel(id) { delTarget = id; document.getElementById('modalDel').classList.add('open'); }
-    function cerrarDel() { delTarget = null; document.getElementById('modalDel').classList.remove('open'); }
-
-    async function confirmarDel() {
-      if (!delTarget) return;
-      try {
-        await sbFetch('DELETE', `${TABLE}?id=eq.${delTarget}`);
-        compras = compras.filter(x => x.id !== delTarget);
-        cerrarDel();
-        renderHistorial(); renderStock(); renderResumen();
-        notif('🗑 Registro eliminado');
-      } catch (e) {
-        notif('❌ Error al eliminar'); console.error(e);
-      }
-    }
-
-    // ── EXCEL ──
-    function exportarExcel() {
-      const q = document.getElementById('searchInput')?.value?.toLowerCase() || '';
-      const fecha = document.getElementById('filtroFecha')?.value || '';
-      const cat = document.getElementById('filtroCat')?.value || '';
-      let lista = compras.filter(c => {
-        if (q && !c.nombre.includes(q) && !(c.proveedor || '').toLowerCase().includes(q)) return false;
-        if (fecha && c.fecha !== fecha) return false;
-        if (cat && c.cat !== cat) return false;
-        return true;
-      });
-      const header = ['#', 'Fecha', 'Insumo', 'Categoría', 'Cantidad', 'Unidad', 'Precio S/', 'Proveedor', 'Observaciones', 'Registrado por'];
-      const rows = lista.map((c, i) => [i + 1, formatFecha(c.fecha), capitalize(c.nombre), capitalize(c.cat), c.cantidad, c.unidad, c.precio.toFixed(2), c.proveedor || '', c.obs || '', c.registradoPor]);
-      const total = lista.reduce((s, c) => s + c.precio, 0);
-      rows.push(['', '', '', '', '', '', 'TOTAL: S/' + total.toFixed(2), '', '', '']);
-      const csv = [header, ...rows].map(r => r.map(v => `"${v}"`).join(',')).join('\n');
-      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `mayitas_compras_${hoy()}.csv`;
-      a.click();
-      notif('📥 Exportando...', 'verde');
     }
 
     // Enter en login
@@ -2630,6 +2570,434 @@
       } catch (e) {
         console.error(e); notif('❌ Error al guardar');
       }
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // 📋 CONTEO DIARIO POR TIENDA
+    // ═══════════════════════════════════════════════════════
+    const CD_TIENDAS = { mayro: 'Tienda Mayro', amarilis: 'Tienda Amarilis', portales: 'Tienda Portales' };
+    let cdTienda = 'mayro';      // tienda activa
+    let cdInsumos = [];          // catálogo de la tienda activa
+    let cdDia = null;            // { id, tienda, fecha, cerrado, nota }
+    let cdFilas = {};            // insumo_id -> { id, anterior, ingreso, final }
+    let cdVista = 'registro';
+    let cdGuardando = false;
+
+    // Helpers de paquete <-> total
+    function cdAText(total, porPaq) {
+      if (total === null || total === undefined || total === '') return '—';
+      total = Number(total);
+      if (porPaq > 0) {
+        const paq = Math.floor(total / porPaq);
+        const su = total % porPaq;
+        return `${paq} y ${su}`;
+      }
+      return `${total}`;
+    }
+    function cdATotal(a, b, porPaq) {
+      a = parseInt(a) || 0;
+      if (porPaq > 0) { b = parseInt(b) || 0; return a * porPaq + b; }
+      return a;
+    }
+
+    function cdInit() {
+      // El personal queda atado a su tienda; el admin elige.
+      const sel = document.getElementById('cdTienda');
+      if (usuario.rol === 'personal' && usuario.tienda && CD_TIENDAS[usuario.tienda]) {
+        cdTienda = usuario.tienda;
+        sel.value = cdTienda;
+        sel.disabled = true;
+        sel.style.cursor = 'default';
+        sel.style.opacity = '.85';
+      } else {
+        cdTienda = sel.value || 'mayro';
+      }
+      // Candado del encabezado "Anterior": solo lo ve bloqueado el personal
+      document.getElementById('cdHeadLock').style.display = usuario.rol === 'admin' ? 'none' : '';
+    }
+
+    function cdMostrarVista(v, btn) {
+      cdVista = v;
+      document.querySelectorAll('.cd-view').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      document.getElementById('cdVistaRegistro').style.display = v === 'registro' ? '' : 'none';
+      document.getElementById('cdVistaHistorial').style.display = v === 'historial' ? '' : 'none';
+      if (v === 'historial') cdRenderHistorial();
+    }
+
+    function cdCambiarTienda(t) {
+      cdTienda = t;
+      cdCargar();
+      if (cdVista === 'historial') cdRenderHistorial();
+    }
+
+    // ── Carga principal: insumos + día de hoy + filas ──
+    async function cdCargar() {
+      try {
+        document.getElementById('cdTbody').innerHTML = '<tr><td colspan="6" style="padding:1.5rem;color:rgba(255,255,255,.4);">⏳ Cargando...</td></tr>';
+        cdInsumos = await sbFetch('GET', `conteo_insumos?tienda=eq.${cdTienda}&activo=eq.true&order=orden.asc,id.asc&select=*`);
+        await cdGetOrCreateDiaHoy();
+        cdRenderTabla();
+      } catch (e) {
+        console.error(e);
+        document.getElementById('cdTbody').innerHTML = '<tr><td colspan="6" style="padding:1.5rem;color:#ff6b6b;">❌ Error al cargar. Revisa el SQL de conteo.</td></tr>';
+      }
+    }
+
+    // ── Obtiene el día de hoy o lo crea heredando el "final" del último día ──
+    async function cdGetOrCreateDiaHoy() {
+      const f = hoy();
+      let dias = await sbFetch('GET', `conteo_dias?tienda=eq.${cdTienda}&fecha=eq.${f}&select=*`);
+      if (dias && dias.length) {
+        cdDia = dias[0];
+      } else {
+        // Buscar el día más reciente anterior para heredar finales
+        const prev = await sbFetch('GET', `conteo_dias?tienda=eq.${cdTienda}&fecha=lt.${f}&order=fecha.desc&limit=1&select=*`);
+        let finalesPrev = {};
+        if (prev && prev.length) {
+          const pf = await sbFetch('GET', `conteo_filas?dia_id=eq.${prev[0].id}&select=insumo_id,final`);
+          pf.forEach(r => { finalesPrev[r.insumo_id] = (r.final === null ? 0 : Number(r.final)); });
+        }
+        const nuevo = await sbFetch('POST', 'conteo_dias', { tienda: cdTienda, fecha: f, cerrado: false, nota: '' });
+        cdDia = nuevo[0];
+        // Crear filas para cada insumo con anterior = final de ayer
+        const nuevasFilas = cdInsumos.map(ins => ({
+          dia_id: cdDia.id,
+          insumo_id: ins.id,
+          anterior: finalesPrev[ins.id] || 0,
+          ingreso: 0,
+          final: null
+        }));
+        if (nuevasFilas.length) await sbFetch('POST', 'conteo_filas', nuevasFilas);
+      }
+      // Cargar las filas del día (y crear las que falten para insumos nuevos)
+      const filas = await sbFetch('GET', `conteo_filas?dia_id=eq.${cdDia.id}&select=*`);
+      cdFilas = {};
+      filas.forEach(r => { cdFilas[r.insumo_id] = r; });
+      const faltan = cdInsumos.filter(ins => !cdFilas[ins.id]).map(ins => ({
+        dia_id: cdDia.id, insumo_id: ins.id, anterior: 0, ingreso: 0, final: null
+      }));
+      if (faltan.length) {
+        const creadas = await sbFetch('POST', 'conteo_filas', faltan);
+        creadas.forEach(r => { cdFilas[r.insumo_id] = r; });
+      }
+      document.getElementById('cdNota').value = cdDia.nota || '';
+    }
+
+    // ── Estado/color de una fila ──
+    function cdEstado(ins, fila) {
+      const inicio = Number(fila.anterior || 0) + Number(fila.ingreso || 0);
+      const tieneFinal = fila.final !== null && fila.final !== undefined && fila.final !== '';
+      const valor = tieneFinal ? Number(fila.final) : inicio;
+      const min = Number(ins.minimo || 0);
+      if (min > 0) {
+        if (valor <= min) return 'r';
+        if (valor <= min * 2) return 'n';
+      } else {
+        if (valor <= 0) return 'r';
+      }
+      return 'v';
+    }
+
+    function cdRenderTabla() {
+      const esAdmin = usuario.rol === 'admin';
+      const bloqueado = cdDia.cerrado;
+      const fechaTxt = formatFecha(cdDia.fecha);
+      document.getElementById('cdFecha').textContent = fechaTxt;
+      const badge = document.getElementById('cdEstado');
+      badge.textContent = cdDia.cerrado ? '🔒 CERRADO' : 'ABIERTO';
+      badge.className = 'cd-daybadge' + (cdDia.cerrado ? ' cerrado' : '');
+      // Mostrar/ocultar pista de paquetes según haya insumos de paquete
+      const hayPaq = cdInsumos.some(i => i.por_paquete > 0);
+      document.getElementById('cdLegendPkg').style.display = hayPaq ? '' : 'none';
+      // Botón cerrar: solo admin y solo si está abierto
+      const btnCerrar = document.getElementById('cdBtnCerrar');
+      if (esAdmin) { btnCerrar.style.display = cdDia.cerrado ? 'none' : ''; }
+      // Nota editable salvo cerrado (admin igual puede)
+      document.getElementById('cdNota').disabled = bloqueado && !esAdmin;
+
+      const tb = document.getElementById('cdTbody');
+      if (!cdInsumos.length) {
+        tb.innerHTML = '<tr><td colspan="6" style="padding:1.5rem;color:rgba(255,255,255,.4);">Sin productos. Usa “+ Agregar producto”.</td></tr>';
+        return;
+      }
+      tb.innerHTML = cdInsumos.map(ins => {
+        const fila = cdFilas[ins.id];
+        if (!fila) return '';
+        const pp = ins.por_paquete || 0;
+        const inicio = Number(fila.anterior || 0) + Number(fila.ingreso || 0);
+        const estado = cdEstado(ins, fila);
+        const rowCls = estado === 'r' ? 'cd-row r' : (estado === 'n' ? 'cd-row n' : 'cd-row');
+
+        // Anterior: editable solo admin y día abierto
+        const antEdit = esAdmin && !bloqueado;
+        // Ingreso/Final: editable por todos si día abierto (o admin siempre)
+        const editable = !bloqueado || esAdmin;
+
+        const celdaAnterior = cdCeldaInput(ins, fila, 'anterior', pp, antEdit);
+        const celdaIngreso = cdCeldaInput(ins, fila, 'ingreso', pp, editable);
+        const celdaFinal = cdCeldaInput(ins, fila, 'final', pp, editable);
+
+        let estadoHtml;
+        if (estado === 'r') estadoHtml = '<span class="cd-estado-badge r">🔴 POR ACABAR</span>';
+        else if (estado === 'n') estadoHtml = '<span class="cd-estado-badge n">⚠ OJO</span>';
+        else estadoHtml = '<span class="cd-dot-ok"></span>';
+
+        return `<tr class="${rowCls}">
+          <td class="cd-prod"><span class="cd-emoji">${ins.emoji || '📦'}</span>${ins.nombre}${esAdmin ? ` <span style="cursor:pointer;opacity:.4;font-size:.8em;" onclick="cdEditarInsumo(${ins.id})" title="Editar producto">✏️</span>` : ''}</td>
+          <td>${celdaAnterior}</td>
+          <td>${celdaIngreso}</td>
+          <td class="cd-inicio" id="cdInicio-${ins.id}">${cdAText(inicio, pp)}</td>
+          <td>${celdaFinal}</td>
+          <td style="text-align:right;">${estadoHtml}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    // Genera el/los input(s) de una celda
+    function cdCeldaInput(ins, fila, campo, pp, editable) {
+      const val = fila[campo];
+      const dis = editable ? '' : 'disabled';
+      if (campo === 'final' && (val === null || val === undefined || val === '')) {
+        // Final vacío: si editable, mostrar input(s) vacíos; si no, guion
+        if (!editable) return '<span style="color:rgba(255,255,255,.3)">—</span>';
+      }
+      if (pp > 0) {
+        const total = (val === null || val === undefined || val === '') ? null : Number(val);
+        const paq = total === null ? '' : Math.floor(total / pp);
+        const su = total === null ? '' : total % pp;
+        return `<span class="cd-pair">
+          <input type="number" class="cd-cell-input" min="0" step="1" value="${paq}" ${dis}
+            onchange="cdEditarCelda(${ins.id},'${campo}','paq',this.value)" placeholder="0">
+          <span class="y">y</span>
+          <input type="number" class="cd-cell-input" min="0" step="1" value="${su}" ${dis}
+            onchange="cdEditarCelda(${ins.id},'${campo}','su',this.value)" placeholder="0">
+        </span>`;
+      }
+      const v = (val === null || val === undefined) ? '' : val;
+      return `<input type="number" class="cd-cell-input" min="0" step="1" value="${v}" ${dis}
+        onchange="cdEditarCelda(${ins.id},'${campo}','one',this.value)" placeholder="—">`;
+    }
+
+    // ── Editar una celda (guarda en Supabase y recalcula) ──
+    async function cdEditarCelda(insumoId, campo, parte, valor) {
+      const ins = cdInsumos.find(i => i.id === insumoId);
+      const fila = cdFilas[insumoId];
+      if (!ins || !fila) return;
+      const pp = ins.por_paquete || 0;
+      let nuevoTotal;
+
+      if (pp > 0) {
+        // Leer ambas casillas actuales desde la fila para recomponer
+        const actual = (fila[campo] === null || fila[campo] === undefined || fila[campo] === '') ? null : Number(fila[campo]);
+        let paq = actual === null ? 0 : Math.floor(actual / pp);
+        let su = actual === null ? 0 : actual % pp;
+        if (parte === 'paq') paq = parseInt(valor) || 0;
+        if (parte === 'su') su = parseInt(valor) || 0;
+        nuevoTotal = paq * pp + su;
+      } else {
+        if (valor === '' && campo === 'final') { nuevoTotal = null; }
+        else nuevoTotal = parseInt(valor) || 0;
+      }
+
+      fila[campo] = nuevoTotal;
+      // Actualizar Inicio en pantalla al instante
+      const inicio = Number(fila.anterior || 0) + Number(fila.ingreso || 0);
+      const cell = document.getElementById('cdInicio-' + insumoId);
+      if (cell) cell.textContent = cdAText(inicio, pp);
+      // Recolorear la fila
+      cdReColorearFila(insumoId);
+
+      // Guardar
+      try {
+        const body = {}; body[campo] = nuevoTotal;
+        await sbFetch('PATCH', `conteo_filas?id=eq.${fila.id}`, body);
+      } catch (e) { console.error(e); notif('❌ No se pudo guardar'); }
+    }
+
+    function cdReColorearFila(insumoId) {
+      const ins = cdInsumos.find(i => i.id === insumoId);
+      const fila = cdFilas[insumoId];
+      const tr = document.querySelector(`#cdInicio-${insumoId}`)?.closest('tr');
+      if (!tr || !ins) return;
+      const estado = cdEstado(ins, fila);
+      tr.className = estado === 'r' ? 'cd-row r' : (estado === 'n' ? 'cd-row n' : 'cd-row');
+      const td = tr.lastElementChild;
+      if (estado === 'r') td.innerHTML = '<span class="cd-estado-badge r">🔴 POR ACABAR</span>';
+      else if (estado === 'n') td.innerHTML = '<span class="cd-estado-badge n">⚠ OJO</span>';
+      else td.innerHTML = '<span class="cd-dot-ok"></span>';
+    }
+
+    // ── Guardar nota del día ──
+    async function cdGuardarNota() {
+      if (!cdDia) return;
+      const nota = document.getElementById('cdNota').value;
+      try {
+        await sbFetch('PATCH', `conteo_dias?id=eq.${cdDia.id}`, { nota });
+        cdDia.nota = nota;
+        notif('✅ Nota guardada', 'verde');
+      } catch (e) { console.error(e); notif('❌ Error al guardar nota'); }
+    }
+
+    // ── Cerrar día (solo admin) ──
+    async function cdCerrarDia() {
+      if (!cdDia || usuario.rol !== 'admin') return;
+      if (!confirm('¿Cerrar el día de hoy?\n\nEl "Final" de hoy pasará a ser el "Anterior" de mañana automáticamente. Después solo tú podrás editarlo.')) return;
+      try {
+        await sbFetch('PATCH', `conteo_dias?id=eq.${cdDia.id}`, { cerrado: true, cerrado_en: new Date().toISOString() });
+        cdDia.cerrado = true;
+        notif('🔒 Día cerrado', 'verde');
+        cdRenderTabla();
+      } catch (e) { console.error(e); notif('❌ Error al cerrar'); }
+    }
+
+    // ── Agregar / editar insumo ──
+    function cdAgregarInsumo() {
+      document.getElementById('insModalTitle').textContent = 'NUEVO PRODUCTO';
+      document.getElementById('insModalSub').textContent = 'Se agrega solo a ' + CD_TIENDAS[cdTienda];
+      document.getElementById('insId').value = '';
+      document.getElementById('ins-nombre').value = '';
+      document.getElementById('ins-emoji').value = '📦';
+      document.getElementById('ins-paquete').checked = false;
+      document.getElementById('ins-porpaq').value = '';
+      document.getElementById('ins-minimo').value = '';
+      cdTogglePaquete(false);
+      document.getElementById('insBtnDel').style.display = 'none';
+      document.getElementById('modalInsumo').classList.add('open');
+    }
+
+    function cdEditarInsumo(id) {
+      const ins = cdInsumos.find(i => i.id === id); if (!ins) return;
+      document.getElementById('insModalTitle').textContent = 'EDITAR PRODUCTO';
+      document.getElementById('insModalSub').textContent = ins.nombre + ' · ' + CD_TIENDAS[cdTienda];
+      document.getElementById('insId').value = ins.id;
+      document.getElementById('ins-nombre').value = ins.nombre;
+      document.getElementById('ins-emoji').value = ins.emoji || '📦';
+      const esPaq = ins.por_paquete > 0;
+      document.getElementById('ins-paquete').checked = esPaq;
+      document.getElementById('ins-porpaq').value = esPaq ? ins.por_paquete : '';
+      document.getElementById('ins-minimo').value = ins.minimo || '';
+      cdTogglePaquete(esPaq);
+      document.getElementById('insBtnDel').style.display = usuario.rol === 'admin' ? '' : 'none';
+      document.getElementById('modalInsumo').classList.add('open');
+    }
+
+    function cdTogglePaquete(on) {
+      document.getElementById('ins-porpaq-wrap').style.display = on ? '' : 'none';
+      document.getElementById('ins-minimo-hint').textContent = on
+        ? 'en unidades reales (ej: 40 salchichas)' : 'en unidades';
+    }
+
+    function cdCerrarModalInsumo() { document.getElementById('modalInsumo').classList.remove('open'); }
+
+    async function cdGuardarInsumo() {
+      const id = document.getElementById('insId').value;
+      const nombre = document.getElementById('ins-nombre').value.trim();
+      const emoji = document.getElementById('ins-emoji').value.trim() || '📦';
+      const esPaq = document.getElementById('ins-paquete').checked;
+      const porPaq = esPaq ? (parseInt(document.getElementById('ins-porpaq').value) || 0) : 0;
+      const minimo = parseFloat(document.getElementById('ins-minimo').value) || 0;
+      if (!nombre) { notif('⚠️ Escribe el nombre'); return; }
+      if (esPaq && porPaq < 1) { notif('⚠️ Indica cuántas unidades trae el paquete'); return; }
+      try {
+        if (id) {
+          await sbFetch('PATCH', `conteo_insumos?id=eq.${id}`, { nombre, emoji, por_paquete: porPaq, minimo });
+        } else {
+          const maxOrden = cdInsumos.reduce((m, i) => Math.max(m, i.orden || 0), 0);
+          const nuevo = await sbFetch('POST', 'conteo_insumos', {
+            tienda: cdTienda, nombre, emoji, por_paquete: porPaq, minimo, orden: maxOrden + 1, activo: true
+          });
+          // Crear su fila en el día actual
+          if (cdDia && nuevo[0]) {
+            await sbFetch('POST', 'conteo_filas', { dia_id: cdDia.id, insumo_id: nuevo[0].id, anterior: 0, ingreso: 0, final: null });
+          }
+        }
+        cdCerrarModalInsumo();
+        notif('✅ Producto guardado', 'verde');
+        await cdCargar();
+      } catch (e) { console.error(e); notif('❌ Error al guardar producto'); }
+    }
+
+    async function cdBorrarInsumo() {
+      const id = document.getElementById('insId').value;
+      if (!id || usuario.rol !== 'admin') return;
+      if (!confirm('¿Eliminar este producto del conteo?\n\nSe quitará de esta tienda y de sus días. El historial de otros días se ajustará.')) return;
+      try {
+        await sbFetch('DELETE', `conteo_insumos?id=eq.${id}`);
+        cdCerrarModalInsumo();
+        notif('🗑 Producto eliminado', 'verde');
+        await cdCargar();
+      } catch (e) { console.error(e); notif('❌ Error al eliminar'); }
+    }
+
+    // ── Historial (solo admin) ──
+    async function cdRenderHistorial() {
+      const cont = document.getElementById('cdHistList');
+      cont.innerHTML = '<div style="padding:1rem;color:rgba(255,255,255,.4);">⏳ Cargando...</div>';
+      try {
+        let q = `conteo_dias?tienda=eq.${cdTienda}&order=fecha.desc&select=*`;
+        const mes = document.getElementById('cdHistMes').value; // YYYY-MM
+        if (mes) {
+          const [y, m] = mes.split('-');
+          const ini = `${y}-${m}-01`;
+          const finMes = new Date(parseInt(y), parseInt(m), 0).getDate();
+          const fin = `${y}-${m}-${String(finMes).padStart(2, '0')}`;
+          q = `conteo_dias?tienda=eq.${cdTienda}&fecha=gte.${ini}&fecha=lte.${fin}&order=fecha.desc&select=*`;
+        }
+        const dias = await sbFetch('GET', q);
+        if (!dias.length) {
+          cont.innerHTML = '<div style="padding:1.5rem;text-align:center;color:rgba(255,255,255,.35);">Sin días guardados en este período.</div>';
+          return;
+        }
+        const DIASEM = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        cont.innerHTML = dias.map(d => {
+          const [y, m, dd] = d.fecha.split('-');
+          const ds = DIASEM[new Date(d.fecha + 'T12:00:00').getDay()];
+          const nota = d.nota ? d.nota : '<span style="opacity:.4;">sin nota</span>';
+          return `<div class="cd-hist-row" onclick="cdVerDia(${d.id})">
+            <div>
+              <div class="cd-hist-fecha">${dd}/${m}</div>
+              <div class="cd-hist-dia">${ds} ${y}</div>
+            </div>
+            <div class="cd-hist-nota">📝 ${nota}</div>
+            <span class="cd-hist-estado ${d.cerrado ? 'cerrado' : ''}">${d.cerrado ? '🔒 Cerrado' : 'Abierto'}</span>
+            <span class="cd-hist-arrow">›</span>
+          </div>`;
+        }).join('');
+      } catch (e) {
+        console.error(e);
+        cont.innerHTML = '<div style="padding:1rem;color:#ff6b6b;">❌ Error al cargar historial.</div>';
+      }
+    }
+
+    async function cdVerDia(diaId) {
+      try {
+        const dias = await sbFetch('GET', `conteo_dias?id=eq.${diaId}&select=*`);
+        const d = dias[0]; if (!d) return;
+        const filas = await sbFetch('GET', `conteo_filas?dia_id=eq.${diaId}&select=*`);
+        const fmap = {}; filas.forEach(f => fmap[f.insumo_id] = f);
+        // insumos de la tienda (puede haber insumos borrados; usamos los actuales como referencia)
+        const insumos = cdInsumos.length ? cdInsumos : await sbFetch('GET', `conteo_insumos?tienda=eq.${d.tienda}&order=orden.asc&select=*`);
+        const [y, m, dd] = d.fecha.split('-');
+        document.getElementById('diaModalTitle').textContent = `${dd}/${m}/${y}`;
+        document.getElementById('diaModalSub').textContent = CD_TIENDAS[d.tienda] + (d.cerrado ? ' · 🔒 cerrado' : ' · abierto');
+        const body = document.getElementById('diaModalBody');
+        body.innerHTML = insumos.filter(ins => fmap[ins.id]).map(ins => {
+          const f = fmap[ins.id]; const pp = ins.por_paquete || 0;
+          const inicio = Number(f.anterior || 0) + Number(f.ingreso || 0);
+          const estado = cdEstado(ins, f);
+          const cls = estado === 'r' ? 'cd-row r' : (estado === 'n' ? 'cd-row n' : '');
+          return `<tr class="${cls}">
+            <td class="cd-prod"><span class="cd-emoji">${ins.emoji || '📦'}</span>${ins.nombre}</td>
+            <td>${cdAText(f.anterior, pp)}</td>
+            <td>${cdAText(f.ingreso, pp)}</td>
+            <td class="cd-inicio">${cdAText(inicio, pp)}</td>
+            <td class="cd-final-val">${cdAText(f.final, pp)}</td>
+          </tr>`;
+        }).join('');
+        document.getElementById('diaModalNota').textContent = d.nota ? ('📝 ' + d.nota) : '📝 Sin nota.';
+        document.getElementById('modalDia').classList.add('open');
+      } catch (e) { console.error(e); notif('❌ Error al abrir el día'); }
     }
 
     // ── Verificar sesión real al cargar ──
