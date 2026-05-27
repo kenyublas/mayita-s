@@ -2031,6 +2031,69 @@
         transform: translateY(-3px);
       }
 
+      /* CTA hint: "Haz clic en cualquier reseña..." con flechita pulsante */
+      .test-tap-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 auto 1.8rem;
+        padding: 9px 18px;
+        background: rgba(255, 215, 0, .08);
+        border: 1px dashed rgba(255, 215, 0, .35);
+        border-radius: 999px;
+        width: fit-content;
+        max-width: 92%;
+      }
+      .test-tap-hint .ttap-text {
+        font-family: var(--fh);
+        font-size: .78rem;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--amarillo);
+      }
+      .test-tap-hint .ttap-arrow {
+        font-size: 1rem;
+        animation: ttap-bounce 1.4s ease-in-out infinite;
+      }
+      @keyframes ttap-bounce {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(4px); }
+      }
+
+      /* CTA al pie de cada tarjeta */
+      .test-cta {
+        margin-top: 1rem;
+        padding-top: .9rem;
+        border-top: 1px solid rgba(255, 255, 255, .15);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        font-family: var(--fh);
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #fff;
+        opacity: .92;
+        transition: opacity .25s;
+      }
+      .test-card:hover .test-cta { opacity: 1; }
+      .test-cta-arrow {
+        font-size: 1.05rem;
+        transition: transform .35s cubic-bezier(.22, .8, .25, 1);
+        display: inline-block;
+      }
+      .test-card:hover .test-cta-arrow {
+        transform: translate(4px, -4px);
+      }
+
+      /* Ajustes por red para que el CTA quede legible sobre cada fondo */
+      .test-card.fb .test-cta { border-top-color: rgba(255, 255, 255, .25); color: #fff; }
+      .test-card.tt .test-cta { border-top-color: rgba(255, 0, 80, .35); color: #ff0050; }
+      .test-card.ig .test-cta { border-top-color: rgba(255, 255, 255, .3); color: #fff; }
+
       /* Colores Realistas por Red Social */
       .test-card.fb { 
         background: #1877f2; color: #fff; border: none; 
@@ -2681,8 +2744,12 @@
       <div class="stitle">LO QUE DICEN</div>
       <div class="sline"></div>
       <div
-        style="text-align:center;color:rgba(255,255,255,.45);font-family:var(--fh);letter-spacing:1.5px;font-size:.78rem;margin-bottom:2rem;">
+        style="text-align:center;color:rgba(255,255,255,.45);font-family:var(--fh);letter-spacing:1.5px;font-size:.78rem;margin-bottom:.6rem;">
         ⭐ MÁS DE 500 CLIENTES SATISFECHOS ⭐</div>
+      <div class="test-tap-hint">
+        <span class="ttap-arrow">👇</span>
+        <span class="ttap-text">Haz clic en cualquier reseña para ver más</span>
+      </div>
       <div class="test-grid">
         <a href="https://www.facebook.com/mayitasburger/" target="_blank" rel="noopener" class="test-card fb">
           <div class="test-stars">★ ★ ★ ★ ★</div>
@@ -2695,6 +2762,7 @@
               <div class="test-fuente">Facebook • Recomendación</div>
             </div>
           </div>
+          <div class="test-cta">Ver en Facebook <span class="test-cta-arrow">↗</span></div>
         </a>
         <a href="https://www.tiktok.com/@mayitas_huanuco" target="_blank" rel="noopener" class="test-card tt">
           <div class="test-stars">★ ★ ★ ★ ★</div>
@@ -2707,6 +2775,7 @@
               <div class="test-fuente">TikTok • Viral</div>
             </div>
           </div>
+          <div class="test-cta">Ver en TikTok <span class="test-cta-arrow">↗</span></div>
         </a>
         <a href="https://www.instagram.com/mayitasburger/" target="_blank" rel="noopener" class="test-card ig">
           <div class="test-stars">★ ★ ★ ★ ★</div>
@@ -2719,6 +2788,7 @@
               <div class="test-fuente">Instagram • @mayitasburger</div>
             </div>
           </div>
+          <div class="test-cta">Ver en Instagram <span class="test-cta-arrow">↗</span></div>
         </a>
       </div>
     </section>
