@@ -2463,6 +2463,7 @@
         color: rgba(255, 255, 255, .82);
         margin: 0;
         font-weight: 500;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
       }
 
       /* Pull-quote: la frase clave salta a serif itálica grande dorada */
@@ -2478,6 +2479,7 @@
         color: var(--amarillo, #FFD700);
         line-height: 1.35;
         letter-spacing: .3px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
       }
 
       /* Divisor vertical con emblema centrado */
@@ -2606,12 +2608,6 @@
         <img src="mayitas_logo.jpg" alt="Logo Mayitas" class="main-logo-hero">
 
         <div class="vm-wrap">
-          <div class="vm-card">
-            <span class="vm-corner tl"></span>
-            <span class="vm-corner tr"></span>
-            <span class="vm-corner bl"></span>
-            <span class="vm-corner br"></span>
-
             <div class="vm-grid">
               <article class="vm-block">
                 <span class="vm-num">01</span>
@@ -2644,7 +2640,6 @@
                 </p>
               </article>
             </div>
-          </div>
         </div>
 
       </div>
@@ -3028,6 +3023,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    // Forzar que la página inicie siempre arriba al cargar o recargar
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // ── SUPABASE CONFIG ──
     const SB_URL = 'https://vazsotruzgxfftavonzv.supabase.co';
     const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhenNvdHJ1emd4ZmZ0YXZvbnp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5ODI1OTksImV4cCI6MjA5NDU1ODU5OX0.pRMuiYQStv7mn_39scbJnq0HH_u15qPuvGguNnZ7Y0M';
@@ -3310,6 +3311,11 @@
     cargarAnunciosWeb();
     cargarPromosWeb();
     cargarMenuWeb();
+
+    // Asegurar scroll al tope después de que todo cargue (opcional extra)
+    window.addEventListener('load', () => {
+      window.scrollTo(0, 0);
+    });
   </script>
 </body>
 
