@@ -2614,6 +2614,8 @@
       }
       // Candado del encabezado "Anterior": solo lo ve bloqueado el personal
       document.getElementById('cdHeadLock').style.display = usuario.rol === 'admin' ? 'none' : '';
+      // Conteo Diario es la pestaña activa por defecto: cargar al iniciar
+      cdCargar();
     }
 
     function cdMostrarVista(v, btn) {
