@@ -195,7 +195,7 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200; /* Aumentado para estar siempre por encima de todo */
     }
 
     nav {
@@ -3475,6 +3475,18 @@
     // STATS ANIMADOS — eliminado (ahora el hero muestra Visión y Misión)
 
     // ── ARRANQUE: cargar todo desde Supabase ──
+    
+    // 1. Desactivar la restauración automática del scroll del navegador
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    // 2. Forzar scroll al inicio al cargar (si no viene con un #ancla específico)
+    window.scrollTo(0, 0);
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     cargarAnunciosWeb();
     cargarPromosWeb();
     cargarMenuWeb();
