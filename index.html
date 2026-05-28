@@ -1659,27 +1659,22 @@
     /* RESPONSIVE */
     @media(max-width:768px) {
 
-      /* Mostrar nav links en móvil, más compactos */
+      /* En móvil: ocultar los links inline, usar la hamburguesa */
       .nav-links {
-        display: flex;
-        gap: 0.5rem;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        display: none;
       }
 
-      .nav-links a {
-        font-size: 0.68rem;
-        letter-spacing: 0px;
-      }
-
-      /* Ocultar hamburguesa — no se usa */
+      /* Mostrar la hamburguesa */
       .hamburger {
-        display: none !important;
+        display: flex !important;
       }
 
+      /* El menú móvil aparece al tocar la hamburguesa (.open) */
       .mmenu {
-        display: none !important;
+        display: none;
+      }
+      .mmenu.open {
+        display: flex !important;
       }
 
       .btn-c-nav {
@@ -2361,6 +2356,13 @@
         padding: 13px 24px;
         font-size: .9rem;
       }
+
+      /* Ajuste para el logo principal en móviles */
+      .main-logo-hero {
+        width: 100%; /* Ocupa el 80% del ancho disponible */
+        max-width: 400px; /* Pero no más de 450px de ancho */
+        height: auto; /* Mantiene la proporción original */
+      }
     }
 
     /* ═══════════ VISIÓN Y MISIÓN — PLACA MANIFIESTO ═══════════ */
@@ -2509,10 +2511,13 @@
     font-family: var(--fb);
     font-size: clamp(.92rem, 1.9vw, 1.05rem);
     line-height: 1.65;
-    color: rgba(255, 255, 255, .82);
+    color: #FF7A18;
     margin: 0;
-    font-weight: 500;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+    -webkit-text-stroke: .6px #000;
+    text-stroke: .6px #000;
+    paint-order: stroke fill;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .9), 0 2px 6px rgba(0, 0, 0, .7);
 }
 
     /* Pull-quote: la frase clave salta a serif itálica grande dorada */
