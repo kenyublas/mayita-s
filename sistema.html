@@ -1626,6 +1626,184 @@
       .cd-pair .cd-cell-input { width: 32px; }
       .cd-legend-pkg { margin-left: 0; width: 100%; }
     }
+
+    /* ═══════════ RESUMEN CONSOLIDADO ═══════════ */
+    .res-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.4rem;
+    }
+    .res-title {
+      font-family: var(--fd);
+      font-size: 1.9rem;
+      letter-spacing: 2px;
+      color: var(--blanco);
+    }
+    .res-fecha-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .res-fecha {
+      font-family: var(--fh);
+      font-size: .82rem;
+      color: rgba(255,255,255,.45);
+      letter-spacing: 1px;
+    }
+    .res-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .res-date-input {
+      background: var(--gris);
+      border: 1px solid rgba(255,255,255,.1);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: var(--fh);
+      font-size: .82rem;
+      letter-spacing: 1px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color .2s;
+      color-scheme: dark;
+    }
+    .res-date-input:focus { border-color: var(--amarillo); }
+    .res-reload {
+      background: none;
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.4);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--fh);
+      font-size: .72rem;
+      letter-spacing: 1px;
+      transition: all .2s;
+    }
+    .res-reload:hover { border-color: var(--amarillo); color: var(--amarillo); }
+
+    /* Grid de tiendas lado a lado */
+    .res-stores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 1.4rem;
+    }
+    @media(max-width:680px) {
+      .res-stores-grid { grid-template-columns: 1fr; }
+    }
+
+    .res-store-card {
+      background: var(--gris2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .res-store-head {
+      padding: 12px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .res-store-name {
+      font-family: var(--fh);
+      font-size: .82rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .res-store-status {
+      font-family: var(--fh);
+      font-size: .6rem;
+      letter-spacing: 1px;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+    .res-store-status.abierto {
+      background: rgba(34,197,94,.15);
+      color: var(--verde);
+      border: 1px solid rgba(34,197,94,.3);
+    }
+    .res-store-status.cerrado {
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.4);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .res-store-status.sin-datos {
+      background: rgba(255,140,0,.12);
+      color: var(--naranja);
+      border: 1px solid rgba(255,140,0,.25);
+    }
+
+    /* Filas de producto dentro de cada tienda */
+    .res-prod-list { padding: 8px 0; }
+    .res-prod-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.03);
+      gap: 8px;
+    }
+    .res-prod-row:last-child { border-bottom: none; }
+    .res-prod-row:hover { background: rgba(255,255,255,.025); }
+    .res-prod-name {
+      font-size: .82rem;
+      color: rgba(255,255,255,.7);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .res-prod-name .res-emoji { margin-right: 5px; }
+    .res-prod-val {
+      font-family: var(--fh);
+      font-size: .92rem;
+      font-weight: 700;
+      min-width: 38px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .res-prod-val.ok { color: #fff; }
+    .res-prod-val.bajo { color: var(--naranja); }
+    .res-prod-val.cero { color: rgba(255,255,255,.2); }
+    .res-prod-val.sin { color: rgba(255,255,255,.18); font-style: italic; font-size: .75rem; }
+
+    /* Barra de progreso mini */
+    .res-prod-bar-wrap {
+      width: 52px;
+      height: 4px;
+      background: rgba(255,255,255,.08);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .res-prod-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width .4s;
+    }
+
+    .res-loading {
+      text-align: center;
+      padding: 3rem;
+      color: rgba(255,255,255,.3);
+      font-family: var(--fh);
+      font-size: .8rem;
+      letter-spacing: 2px;
+    }
+    .res-empty-tienda {
+      padding: 1.5rem 16px;
+      text-align: center;
+      color: rgba(255,255,255,.25);
+      font-size: .78rem;
+      font-family: var(--fh);
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 
@@ -1673,6 +1851,7 @@
         <button class="tab admin-only" onclick="showTab('productos',this)" id="tabProductos">🍔 Productos Web</button>
         <button class="tab admin-only" onclick="showTab('promos',this)" id="tabPromos">🎁 Promos</button>
         <button class="tab admin-only" onclick="showTab('anuncios',this)" id="tabAnuncios">📣 Anuncios</button>
+        <button class="tab admin-only" onclick="showTab('resumen',this)" id="tabResumen">📊 Resumen</button>
       </div>
 
       <!-- TAB: CONTEO DIARIO -->
@@ -1820,6 +1999,24 @@
           <button class="btn-mini" onclick="guardarAnuncios()"
             style="background:var(--verde);padding:9px 18px;font-size:.78rem;">💾 GUARDAR CAMBIOS</button>
         </div>
+      </div>
+
+      <!-- TAB: RESUMEN CONSOLIDADO (solo admin) -->
+      <div class="tab-panel" id="panel-resumen">
+
+        <div class="res-header">
+          <div class="res-title">RESUMEN</div>
+          <div class="res-controls">
+            <input type="date" id="resFechaPicker" class="res-date-input" onchange="resCargar()">
+            <button class="res-reload" onclick="resIrHoy()">HOY</button>
+          </div>
+        </div>
+
+        <!-- Las 3 tiendas lado a lado -->
+        <div class="res-stores-grid" id="resGrid">
+          <div class="res-loading">⏳ CARGANDO...</div>
+        </div>
+
       </div>
 
     </div>
@@ -2078,6 +2275,7 @@
       if (id === 'productos') renderProductos();
       if (id === 'promos') renderPromos();
       if (id === 'anuncios') renderAnuncios();
+      if (id === 'resumen') resIrHoy();
     }
 
     // Enter en login
@@ -3000,6 +3198,131 @@
         document.getElementById('diaModalNota').textContent = d.nota ? ('📝 ' + d.nota) : '📝 Sin nota.';
         document.getElementById('modalDia').classList.add('open');
       } catch (e) { console.error(e); notif('❌ Error al abrir el día'); }
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // 📊 RESUMEN CONSOLIDADO — stock final de hoy por tienda
+    // ═══════════════════════════════════════════════════════
+
+    const RES_TIENDAS = [
+      { key: 'mayro',    nombre: 'T. Mayro' },
+      { key: 'amarilis', nombre: 'T. Amarilis' },
+      { key: 'portales', nombre: 'T. Portales' },
+    ];
+
+    function resIrHoy() {
+      document.getElementById('resFechaPicker').value = hoy();
+      resCargar();
+    }
+
+    async function resCargar() {
+      const picker = document.getElementById('resFechaPicker');
+      // Si no tiene fecha seleccionada, poner hoy
+      if (!picker.value) picker.value = hoy();
+      const fecha = picker.value;
+
+      const grid = document.getElementById('resGrid');
+      grid.innerHTML = '<div class="res-loading">⏳ CARGANDO...</div>';
+
+      // Cargar las 3 tiendas en paralelo
+      const resultados = await Promise.all(RES_TIENDAS.map(t => resCargarTienda(t, fecha)));
+
+      grid.innerHTML = '';
+      resultados.forEach(html => {
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        grid.appendChild(div.firstElementChild);
+      });
+    }
+
+    async function resCargarTienda({ key, nombre }, fecha) {
+      try {
+        // Día de hoy
+        const dias = await sbFetch('GET', `conteo_dias?tienda=eq.${key}&fecha=eq.${fecha}&select=*`);
+        const dia = dias && dias[0];
+
+        // Insumos activos de esta tienda
+        const insumos = await sbFetch('GET', `conteo_insumos?tienda=eq.${key}&activo=eq.true&order=orden.asc,id.asc&select=*`);
+
+        if (!insumos || !insumos.length) {
+          return `<div class="res-store-card">
+            ${resStoreHead(nombre, 'sin-datos', 'SIN DATOS')}
+            <div class="res-empty-tienda">Sin productos registrados</div>
+          </div>`;
+        }
+
+        let filas = {};
+        if (dia) {
+          const f = await sbFetch('GET', `conteo_filas?dia_id=eq.${dia.id}&select=*`);
+          if (f) f.forEach(r => filas[r.insumo_id] = r);
+        }
+
+        const estado = !dia ? 'sin-datos' : (dia.cerrado ? 'cerrado' : 'abierto');
+        const estadoLabel = !dia ? 'SIN DÍA' : (dia.cerrado ? 'CERRADO' : 'ABIERTO');
+
+        // Calcular máximo para las barras de progreso
+        const maxVal = insumos.reduce((m, ins) => {
+          const f = filas[ins.id];
+          const val = f && f.final !== null && f.final !== undefined ? Number(f.final) : null;
+          return val !== null && val > m ? val : m;
+        }, 1);
+
+        const rows = insumos.map(ins => {
+          const f = filas[ins.id];
+          const pp = ins.por_paquete || 0;
+          const raw = f && f.final !== null && f.final !== undefined ? Number(f.final) : null;
+          const display = raw === null ? null : cdAText(raw, pp);
+
+          let valClass = 'sin';
+          let barPct = 0;
+          let barColor = 'rgba(255,255,255,.15)';
+
+          if (raw !== null) {
+            barPct = Math.min(100, Math.round((raw / maxVal) * 100));
+            if (raw === 0) {
+              valClass = 'cero';
+              barColor = 'rgba(200,24,26,.5)';
+            } else if (ins.minimo && raw <= ins.minimo) {
+              valClass = 'bajo';
+              barColor = 'var(--naranja)';
+            } else {
+              valClass = 'ok';
+              barColor = 'var(--verde)';
+            }
+          }
+
+          return `<div class="res-prod-row">
+            <div class="res-prod-name">
+              <span class="res-emoji">${ins.emoji || '📦'}</span>${ins.nombre}
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+              <div class="res-prod-bar-wrap">
+                <div class="res-prod-bar-fill" style="width:${barPct}%;background:${barColor};"></div>
+              </div>
+              <div class="res-prod-val ${valClass}">${display !== null ? display : '—'}</div>
+            </div>
+          </div>`;
+        }).join('');
+
+        return `<div class="res-store-card">
+          ${resStoreHead(nombre, estado, estadoLabel)}
+          <div class="res-prod-list">${rows}</div>
+        </div>`;
+
+      } catch (e) {
+        console.error(e);
+        return `<div class="res-store-card">
+          ${resStoreHead(nombre, 'sin-datos', 'ERROR')}
+          <div class="res-empty-tienda">❌ No se pudo cargar</div>
+        </div>`;
+      }
+    }
+
+    function resStoreHead(nombre, estadoKey, estadoLabel) {
+      return `<div class="res-store-head">
+        <div class="res-store-name">📍 ${nombre}</div>
+        <span class="res-store-status ${estadoKey}">${estadoLabel}</span>
+      </div>`;
     }
 
     // ── Verificar sesión real al cargar ──
